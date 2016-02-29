@@ -115,6 +115,7 @@ a:hover{
 	padding-top: 50px;
 	position: relative;
 	min-height: 600px;
+	overflow: hidden;
 }
 .project>.next{
 	width: 0;
@@ -175,6 +176,7 @@ a:hover{
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	border: 3px solid #ddd;
+	background-color: #fff;
 }
 .myproject li a{
 	display: block;
@@ -185,7 +187,7 @@ a:hover{
 	position: relative;
 }
 .myproject li a:hover{
-	background: rgba(0,0,0,0.2);
+	opacity: 0.8;
 }
 #_3dl4{
 	top: 60px;
