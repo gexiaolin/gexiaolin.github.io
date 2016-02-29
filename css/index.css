@@ -1,8 +1,23 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+body{
+	font-family: '微软雅黑';
+	font-size: 16px;
+}
 a:hover{
 	text-decoration: none;
 }
 .my-container-fluid{
 	background: #222;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+	opacity: 0.9;
 }
 #navbar-inverse{
 	border: none;
@@ -12,4 +27,93 @@ a:hover{
 	display: block;
 	width: 100%;
 	height: 100%;
+}
+#my-jumbotron{
+	height: 670px;
+	background: url(../images/bg-1.jpg) no-repeat center center;
+	background-size: cover;
+	margin-bottom: 0;
+}
+.down{
+	position: absolute;
+	left: 50%;
+	bottom: 28px;
+	margin-left: -38px;
+	-webkit-transition: bottom 0.3s ease;
+	transition: bottom 0.5s ease;
+}
+.down:hover{
+	bottom: 18px;
+}
+.aboutme{
+	background: #888;
+	padding-top: 50px;
+	position: relative;
+	min-height: 600px;
+}
+.aboutme>.omy{
+	color: #ff7257;
+	position: absolute;
+	left: 0;
+	top: -20px;
+	width: 35%;
+}
+.float{
+	width: 25%;
+	opacity: 0.2;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.aboutme>h4,.skill>h4{
+	width: 70%;
+	border-bottom: 1px solid #fff;
+	margin-left: 30%;
+	color: rgba(255,255,255,0.9);
+	padding: 5px 0;
+}
+.aboutme>h4>span{
+	font-weight: 100;
+	font-size: 16px;
+}
+.aboutme>h5{
+	padding-top: 200px;
+}
+.aboutme>.next{
+	width: 0;
+	height: 0;
+	border-top: 20px solid #888;
+	border-left: 20px solid rgba(255,255,255,0);
+	border-right: 20px solid rgba(255,255,255,0);
+	position: absolute;
+	bottom: -20px;
+	left: 50%;
+	margin-left: -10px;
+	z-index: 99;
+}
+#my-skill{
+	height: 670px;
+	background: url(../images/bg-2.jpg) no-repeat center center;
+	background-size: cover;
+	margin-bottom: 0;
+	margin-top: -10px;
+	position: relative;
+}
+.skill{
+	background: #ff7257;
+	padding-top: 50px;
+	position: relative;
+	min-height: 600px;
+}
+.skill>.next{
+	width: 0;
+	height: 0;
+	border-top: 20px solid #ff7357;
+	border-left: 20px solid rgba(255,255,255,0);
+	border-right: 20px solid rgba(255,255,255,0);
+	position: absolute;
+	bottom: -20px;
+	left: 50%;
+	margin-left: -10px;
+	z-index: 99;
 }
