@@ -1,155 +1,242 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>六弦</title>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="css/index.css">
-  </head>
-  <body>
-
-    <div class="container-fluid my-container-fluid">
-      <div class="container">
-        <nav class="navbar navbar-inverse" id='navbar-inverse'>
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Brand</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <!-- 搜索框 需要时放出 -->
-              <!-- <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-              </form> -->
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
-      </div>
-    </div>
-    
-    <!-- on my way -->
-    <div class="jumbotron" id="my-jumbotron">
-      <div class="container">
-        <img src="images/logo-3.png" class='down'>
-      </div>
-    </div>
-
-    <!-- 1L -->
-    <div class="containerfluid aboutme">
-      <img src="images/float.png" class="float">
-      <img src="images/omw.png" class="omy">
-      <h4>在路上&nbsp;&nbsp;<span>About me</span></h4>
-      <h5></h5>
-      <div class="next"></div>
-      <img src="images/logo-3.png" class='down'>
-    </div>
-
-    <!-- skill -->
-    <div class="jumbotron" id="my-skill">
-      <div class="container">
-        <img src="images/logo-3.png" class='down'>
-      </div>
-    </div>
-
-    <!-- 2L -->
-    <div class="containerfluid project">
-      <img src="images/float.png" class="float">
-      <h4>项目作品&nbsp;&nbsp;<span>My projects</span></h4>
-      <!-- project -->
-      <div class="pro">
-        <ul class='myproject'>
-          <li id="_3dl1">
-            <a href="/xiaomi" id="item1"></a>
-          </li>
-          <li id="_3dl2">
-            <a href="/TMall" id="item2"></a>
-          </li>
-          <li id="_3dl3">
-            <a href="/1haodian" id="item3"></a>
-          </li>
-          <li id="_3dl4">
-            <a href="/youzhan" id="item4"></a>
-          </li>
-          <li id="_3dl5">
-            <a href="/QQMusic" id="item5"></a>
-          </li>
-          <li id="_3dl6">
-            <a href="/FlappyBird" id="item6"></a>
-          </li>
-          <li id="_3dl7">
-            <a href="/canvas-fiv" id="item7"></a>
-          </li>
-          <li id="_3dl8">
-            <a href="/icloudReminder" id="item8"></a>
-          </li>
-          <li id="_3dl9">
-            <a href="/angularSketch" id="item9"></a>
-          </li>
-          <li id="_3dl10">
-            <a href="/snake" id="item10"></a>
-          </li>
-          <li id="_3dl11">
-            <a href="/block" id="item11"></a>
-          </li>
-          <li id="_3dl12">
-            <a href="/apple" id="item12"></a>
-          </li>
-        </ul>
-      </div>
-      <span class="left"></span>
-      <span class="right"></span>
-      <div class="next"></div>
-      <img src="images/logo-3.png" class='down'>
-    </div>
-
-    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src='js/index.js'></script>
-  </body>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>爱吉他的葛潇林</title>
+	<link rel="stylesheet" href="css/jquery.fullpage.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.fullPage.js"></script>
+	<script src="js/jquery.slimscroll.js"></script>
+	<script src="js/index.js"></script>
+</head>
+<body>
+	<header class="navbox">
+		<div class="navcon">
+			<div class="navHold" key="true">
+				<span></span>
+				<span></span>
+				<span></span>
+				<ul>
+					<li>
+						<a href="#p2">技能掌握</a>
+					</li>
+					<li>
+						<a href="#p3">工作经历</a>
+					</li>
+					<li>
+						<a href="#p4">工作动力</a>
+					</li>
+					<li>
+						<a href="#p5">H5作品</a>
+					</li>
+					<li>
+						<a href="#p6">其他作品</a>
+					</li>
+					<li>
+						<a href="#p7">联系我</a>
+					</li>
+				</ul>
+			</div>
+			<div id="talk">
+				<a href="#p7">LET'S TALK</a>
+			</div>
+		</div>
+	</header>
+	<div id="fullpage">
+		<div class="section">
+			<div class="container">
+				<h1>
+					WELCOME TO
+					<br>
+					<span class="p1Green"></span>
+					<span class="p1Curser">|</span>
+				</h1>
+				<p>
+					欢迎来到我的个人站
+					<br>
+					希望在这里可以得到你想要的信息(・`ω´･)
+				</p>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<h1>
+					WORK SKILL(ง •̀_•́)ง
+					<br>
+					<span class="p2White"></span>
+					<span class="p2Curser">|</span>
+				</h1>
+				<p>目前前端常用的一些库和框架，例如：
+				<br>
+				jQuery、zepto、Bootstrap、Angular、fullpage等，
+				<br>
+				都是工作中常用到的工具(轮子越来越圆了)。</p>
+				<div class="row">
+					<div class="speech">
+						<div class="speech1"></div>
+						<div class="speech2"></div>
+						<div class="speech3"></div>
+						<div class="speech4"></div>
+					</div>
+				</div>
+				<img src="images/skill.png" id="skill">
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<h1>
+					<span class="p3Green"></span>
+					<span class="p3Curser">|</span>
+				</h1>
+				<p>2014-3至2014-12山西集创科技有限公司，<br>2015-3至2016-3山西硬汉科技有限公司，
+				<br>
+				作为2年的新人，在前端这条路上正在前进。
+				</p>
+			</div>
+			<div class="paper">
+				<div class="paper1"></div>
+				<div class="paper2"></div>
+				<div class="paper3"></div>
+				<div class="paper4"></div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<div class="towScreen">
+					<div class="screen1"></div>
+					<div class="screen2"></div>
+					<div class="screen3"></div>
+					<div class="screen4"></div>
+				</div>
+				<h1>
+					THAT ALLOWS
+					<br>
+					 ME TO 
+					<span class="p4White"></span>
+					<span class="p4Curser">|</span>
+				</h1>
+				<p>我想兴趣是最好的导师，
+				<br>
+				也是梦想坚持下去的动力。
+				</p>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<h1>
+					SOME SIMPLE
+					<br>
+					<span class="p5Green"></span>
+					<span class="p5Curser">|</span>
+				</h1>
+				<p>通过一些简单的逻辑算法模仿出一些经典的趣味小游戏，
+				<br>
+				以及通过H5的CANVAS画布做出的小动效。
+				</p>
+				<div class="folder">
+					<div class="folder1"></div>
+					<div class="folder2"></div>
+					<div class="folder3"></div>
+					<div class="folder4"></div>
+					<div class="folder5"></div>
+					<div class="folder6"></div>
+				</div>
+				<div class="games">
+					<a href="/snake" class="snake">
+						<img src="images/snake.png">
+					</a>
+					<a href="/saolei" class="saolei">
+						<img src="images/saolei.png">
+					</a>
+					<a href="/FlappyBird" class="bird">
+						<img src="images/flappybird.jpg">
+					</a>
+					<a href="/canvas-fiv" class="five">
+						<img src="images/five.jpg">
+					</a>
+					<a href="/fontDrop" class="font">
+						<img src="images/font.jpg">
+					</a>
+					<a href="/snow" class="snow">
+						<img src="images/snow.jpg">
+					</a>
+					<a href="/coolFlame" class="flame">
+						<img src="images/flame.jpg">
+					</a>
+					<a href="/angularSketch" class="sketch">
+						<img src="images/sketch.jpg">
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<h1>
+					OTHER 
+					<span class="p6White"></span>
+					<span class="p6Curser">|</span>
+				</h1>
+				<p>
+				这里展示的内容包括html+css，源生js，响应式布局，运用到JQ，angular等库和框架完成的作品等。
+				</p>
+				<div class="projects">
+					<div class="pro">
+					  <ul class='myproject'>
+					    <li id="_3dl1">
+					      <a href="/xiaomi" id="item1"></a>
+					    </li>
+					    <li id="_3dl2">
+					      <a href="/TMall" id="item2"></a>
+					    </li>
+					    <li id="_3dl3">
+					      <a href="/1haodian" id="item3"></a>
+					    </li>
+					    <li id="_3dl4">
+					      <a href="/youzhan" id="item4"></a>
+					    </li>
+					    <li id="_3dl5">
+					      <a href="/QQMusic" id="item5"></a>
+					    </li>
+					    <li id="_3dl6">
+					      <a href="/block" id="item6"></a>
+					    </li>
+					    <li id="_3dl7">
+					      <a href="/apple" id="item7"></a>
+					    </li>
+					  </ul>
+					</div>
+					<span class="proLeft"></span>
+	      			<span class="proRight"></span>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="container">
+				<h1>
+					LET'S 
+					<span class="p7Green"></span>
+					<span class="p7Curser">|</span>
+				</h1>
+				<p>如果您对我有一点点的兴趣，<br>请通过以下方式联系我。</p>
+				<div class="contact">
+					<div class="name">
+						<div class="namepic"></div>
+						<div class="namedes">
+							<div class="desfonts">
+								<h2>葛潇林</h2>
+								<p>来自山西运城，毕业于太原工业学院-电子工程系。<br>喜欢吉他，音乐，旅行。<br>喜欢做一个页面的魔术师，通过一行行代码将一页空白逐渐充实。<br>坚信努力是通往梦想的唯一道路。<br>“人如果没有梦想，和咸鱼有什么区别”。</p>
+								<p class="green">TEL: 15536270606<br> 
+                        			<a href="#p7">E-MAIL: hina_ge@163.com</a><br>
+                        		</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js/move.js"></script>
 </html>
