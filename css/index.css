@@ -808,3 +808,108 @@ header,nav{
 		opacity: 0.8;
 	}
 }
+@media(max-width: 640px){
+	.section .container{
+		height: 100%;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+	.section .container>h1{
+		font-size: 34px;
+		padding: 0;
+		width: 100%;
+		text-align: center;
+	}
+	.section .container>p{
+		text-align: center;
+		padding: 0;
+		width: 100%;
+	}
+	#skill{
+		width: 300px;
+		position: absolute;
+		left: 20px;
+		top: 360px;
+		opacity: 0.8;
+		display: block;
+		margin: 0 auto;
+	}
+	.section:nth-of-type(2) .row{
+		width: 100%;
+	}
+	.section:nth-of-type(2) .row .speech{
+		top: 400px;
+		left: 50%;
+		margin-left: -94px;
+	}
+	.section:nth-of-type(2) .row .speech3{
+		background-size: 120px 80px;
+		margin: 0;
+		overflow: hidden;
+		width: 188px;
+		height: 122px;
+	}
+	.speech1,.speech2,.speech4{
+		display: none;
+	}
+	.paper1,.paper2,.paper3{
+		display: none;
+	}
+	.section:nth-of-type(3) .paper .paper4{
+		background-size: 30% auto;
+	}
+	.section:nth-of-type(4) .towScreen{
+		width: 100%;
+	}
+	.section:nth-of-type(4) .towScreen .screen1,.section:nth-of-type(4) .towScreen .screen2,.section:nth-of-type(4) .towScreen .screen3,.section:nth-of-type(4) .towScreen .screen4{
+		width: 100%;
+		background-size: 100% auto;
+	}
+	.folder{
+		display: none;
+	}
+	.games{
+		width: 100%;
+	}
+	.myproject li{
+		width: 180px;
+	    height: 120px;
+	}
+	.myproject{
+		margin-left: 0;
+		margin-right: 0;
+	}
+	#_3dl1,#_3dl2,#_3dl3,#_3dl4,#_3dl5,#_3dl6,#_3dl7{
+		margin-left: -90px;
+	}
+	.projects>.proLeft,.projects>.proRight{
+		top: 350px;
+	}
+	.projects>.proLeft{
+		left: 70px;
+	}
+	.section:nth-of-type(7) .contact{
+		width: 100%;
+	}
+	.section:nth-of-type(7) .contact .name{
+		width: 100%;
+	}
+	.section:nth-of-type(7) .contact .namepic{
+		display: none;
+	}
+	.section:nth-of-type(7) .contact .namedes{
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		width: 100%;
+		margin: 0;
+		padding: 0 15px;
+		text-align: center;
+	}
+	.section:nth-of-type(7) .contact .desfonts{
+		width: 100%;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		padding: 0 30px;
+	}
+}
