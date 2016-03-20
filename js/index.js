@@ -17,7 +17,7 @@ $(function(){
 		}
 	})();
 	var p2White = (function(){
-		var fontsArr = ['W','H','A','T','&nbsp;','C','A','N','&nbsp;','I','&nbsp;','D','O','&nbsp;','→'];
+		var fontsArr = ['W','H','A','T','&nbsp;','C','A','N','&nbsp;','I','&nbsp;','D','O','&nbsp;'];
 		var $con = $('.section:nth-of-type(2) h1 .p2White');
 		var fontsIndex = 0;
 		return function add(){
