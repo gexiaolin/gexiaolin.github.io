@@ -983,4 +983,7 @@ header,nav{
 		box-sizing: border-box;
 		padding: 0 30px;
 	}
+	.light{
+		display: none;
+	}
 }
