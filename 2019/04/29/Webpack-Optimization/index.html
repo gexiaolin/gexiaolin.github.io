@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Webpack Optimization | 葛潇林</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Optimization (webpack文档翻译)从webpack4开始，webpack会根据你的mode选项来决定运行哪些优化项，但是所有的优化项仍然可以手动配置及覆盖。 optimization.minimizeboolean 是否使用UglifyjsWebpackPlugin进行压缩。 在production模式下默认为true。 webpack.config.js 123456modul">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webpack Optimization">
+<meta property="og:url" content="http://hinapudao.github.io/2019/04/29/Webpack-Optimization/index.html">
+<meta property="og:site_name" content="葛潇林">
+<meta property="og:description" content="Optimization (webpack文档翻译)从webpack4开始，webpack会根据你的mode选项来决定运行哪些优化项，但是所有的优化项仍然可以手动配置及覆盖。 optimization.minimizeboolean 是否使用UglifyjsWebpackPlugin进行压缩。 在production模式下默认为true。 webpack.config.js 123456modul">
+<meta property="og:locale" content="中文">
+<meta property="og:updated_time" content="2019-09-11T10:32:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Webpack Optimization">
+<meta name="twitter:description" content="Optimization (webpack文档翻译)从webpack4开始，webpack会根据你的mode选项来决定运行哪些优化项，但是所有的优化项仍然可以手动配置及覆盖。 optimization.minimizeboolean 是否使用UglifyjsWebpackPlugin进行压缩。 在production模式下默认为true。 webpack.config.js 123456modul">
+  
+    <link rel="alternate" href="/atom.xml" title="葛潇林" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">葛潇林</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">我变秃了，也变强了</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hinapudao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer" id="article">
+        <section id="main"><article id="post-Webpack-Optimization" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/29/Webpack-Optimization/" class="article-date">
+  <time datetime="2019-04-29T08:50:49.000Z" itemprop="datePublished">2019-04-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Webpack Optimization
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Optimization-webpack文档翻译"><a href="#Optimization-webpack文档翻译" class="headerlink" title="Optimization (webpack文档翻译)"></a>Optimization (webpack文档翻译)</h1><p>从webpack4开始，webpack会根据你的<code>mode</code>选项来决定运行哪些优化项，但是所有的优化项仍然可以手动配置及覆盖。</p>
+<h2 id="optimization-minimize"><a href="#optimization-minimize" class="headerlink" title="optimization.minimize"></a><code>optimization.minimize</code></h2><p><code>boolean</code></p>
+<p>是否使用<a href="https://webpack.js.org/plugins/uglifyjs-webpack-plugin/" target="_blank" rel="noopener">UglifyjsWebpackPlugin</a>进行压缩。</p>
+<p>在<code>production</code>模式下默认为<code>true</code>。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimize: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>更多关于<a href="https://webpack.js.org/concepts/mode/" target="_blank" rel="noopener">mode</a></p>
+</blockquote>
+<h2 id="optimization-minimizer"><a href="#optimization-minimizer" class="headerlink" title="optimization.minimizer"></a><code>optimization.minimizer</code></h2><p><code>[UglifyjsWebpackPlugin]</code></p>
+<p>这个选项允许你使用其他的压缩插件，或者覆盖<a href="https://webpack.js.org/plugins/uglifyjs-webpack-plugin/" target="_blank" rel="noopener">UglifyjsWebpackPlugin</a>的默认配置项。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UglifyJsPlugin = <span class="built_in">require</span>(<span class="string">'uglifyjs-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimizer: [</span><br><span class="line">      <span class="keyword">new</span> UglifyJsPlugin(&#123; <span class="comment">/* your config */</span> &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-splitChunks"><a href="#optimization-splitChunks" class="headerlink" title="optimization.splitChunks"></a><code>optimization.splitChunks</code></h2><p><code>object</code></p>
+<p>从webpack4开始，我们提供了默认的chunk代码分割插件(CommonsChunkPlugin推出历史舞台)，更多配置信息参考<a href="https://webpack.js.org/plugins/split-chunks-plugin/" target="_blank" rel="noopener">SplitChunksPlugin</a>(翻译文档已上传github)。</p>
+<h2 id="optimization-runtimeChunk"><a href="#optimization-runtimeChunk" class="headerlink" title="optimization.runtimeChunk"></a><code>optimization.runtimeChunk</code></h2><p><code>object</code> <code>string</code> <code>boolean</code></p>
+<p>如果想给<strong>每个entrypoint</strong>添加一个包含runtime代码的额外chunk，我们可以把<code>optimization.runtimeChunk</code>设置为<code>true</code>或者<code>multiple</code>。该值等同于：</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    runtimeChunk: &#123;</span><br><span class="line">      name: <span class="function"><span class="params">entrypoint</span> =&gt;</span> <span class="string">`runtime~<span class="subst">$&#123;entrypoint.name&#125;</span>`</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>single</code> 创建一个runtime文件，这个文件会被所有chunks公用。该值等同于：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    runtimeChunk: &#123;</span><br><span class="line">      name: <span class="string">'runtime'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果我们把<code>optimization.runtimeChunk</code>设置为<code>object</code>，该对象仅支持<code>name</code>值作为打包生成的runtime代码块的name。</p>
+<p>默认为<code>false</code>：runtime打包进各个entry chunk。</p>
+<blockquote>
+<p>引入的模块代码将分别在每个chunk运行时初始化，因此如果在页面上包含多个entry point，请注意此行为。这种情况下，你可能希望设置<code>single</code>项，或者使用其他配置项，使runtime代码分割为同一个公用chunk。</p>
+</blockquote>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    runtimeChunk: &#123;</span><br><span class="line">      name: <span class="function"><span class="params">entrypoint</span> =&gt;</span> <span class="string">`runtimechunk~<span class="subst">$&#123;entrypoint.name&#125;</span>`</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-noEmitOnErrors"><a href="#optimization-noEmitOnErrors" class="headerlink" title="optimization.noEmitOnErrors"></a><code>optimization.noEmitOnErrors</code></h2><p><code>boolean</code></p>
+<p><code>optimization.noEmitOnErrors</code>会在编译发生错误时跳过输出。该选项可以确保错误的资源不被打包进chunk，并且在打印信息中不再包含错误信息。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    noEmitOnErrors: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果你使用webpack CLI进行开发，webpack不会再遇到错误代码时结束进程。如果你希望webpack CLI在编译遇到错误时不退出，请检查CLI的<a href="https://webpack.js.org/api/cli/#advanced-options" target="_blank" rel="noopener"><code>bail</code> option</a>。</p>
+</blockquote>
+<h2 id="optimization-namedModules"><a href="#optimization-namedModules" class="headerlink" title="optimization.namedModules"></a><code>optimization.namedModules</code></h2><p><code>boolean: false</code></p>
+<p>为了方便调试，使用更易读的模块ids。该配置项可以在<code>development</code>模式下使用（默认），不可以在<code>production</code>模式下使用。</p>
+<p><strong>webpack.config.js</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    namedChunks: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="optimization-moduleIds"><a href="#optimization-moduleIds" class="headerlink" title="optimization.moduleIds"></a>optimization.moduleIds</h2><p><code>bool:false</code> <code>string: natural, named, hashed, size, total-size</code></p>
+<p>该配置项可以指定使用某一种算法来生成模块ids。如果设置<code>optimization.moduleIds</code>为<code>false</code>，则webpack在生成ids时不使用任何一种算法，这一项可以用其他plugin来替代。</p>
+<p>默认为<code>false</code>。</p>
+<p>支持以下值：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Option</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>natural</code></td>
+<td style="text-align:left">数字下标</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>named</code></td>
+<td style="text-align:left">方便调试的高可读性ids</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>hashed</code></td>
+<td style="text-align:left">短hash ids，长期缓存表现更好</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>size</code></td>
+<td style="text-align:left">根据请求到的初始资源size计算的ids</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>total-size</code></td>
+<td style="text-align:left">根据请求到的解析资源size计算的ids</td>
+</tr>
+</tbody>
+</table>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    moduleIds: <span class="string">'hashed'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-nodeEnv"><a href="#optimization-nodeEnv" class="headerlink" title="optimization.nodeEnv"></a><code>optimization.nodeEnv</code></h2><p><code>string</code> <code>bool: false</code></p>
+<p>给定一个<code>process.env.NODE_ENV</code>值。<code>optimization.nodeEnv</code>会使用<a href="https://webpack.js.org/plugins/define-plugin/" target="_blank" rel="noopener">DefinePlugin</a>，除非设置值为<code>false</code>。<code>optimization.nodeEnv</code>的<strong>默认值</strong>为mode的值，如果没有设置的话，默认为<code>production</code>。</p>
+<p>可以设置的值：</p>
+<ul>
+<li>任意字符串</li>
+<li>false: 不修改<code>process.env.NODE_ENV</code>的值</li>
+</ul>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    nodeEnv: <span class="string">'production'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-mangleWasmImports"><a href="#optimization-mangleWasmImports" class="headerlink" title="optimization.mangleWasmImports"></a><code>optimization.mangleWasmImports</code></h2><p><code>bool: false</code></p>
+<p>如果设置为<code>true</code>，webpack会通过把引入资源转换为更短的字符串的方式，减少WASM的大小。它会打乱module并输出names。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    mangleWasmImports: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-removeAvailableModules"><a href="#optimization-removeAvailableModules" class="headerlink" title="optimization.removeAvailableModules"></a><code>optimization.removeAvailableModules</code></h2><p><code>bool: true</code></p>
+<p>该配置项会检测modules是否已经被父级chunk打包过，如果已经被打包过，则会在该chunk中删除该modules。设置为<code>false</code>来阻止该优化。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    removeAvailableModules: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-removeEmptyChunks"><a href="#optimization-removeEmptyChunks" class="headerlink" title="optimization.removeEmptyChunks"></a><code>optimization.removeEmptyChunks</code></h2><p><code>bool: true</code></p>
+<p>该配置项会检测并删除空的chunks。设置为<code>false</code>来阻止该优化。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    removeEmptyChunks: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-mergeDuplicateChunks"><a href="#optimization-mergeDuplicateChunks" class="headerlink" title="optimization.mergeDuplicateChunks"></a><code>optimization.mergeDuplicateChunks</code></h2><p><code>bool: true</code></p>
+<p>该配置项会合并包含相同modiles的trunks。设置为<code>false</code>来阻止该优化。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    mergeDuplicateChunks: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-flagIncludedChunks"><a href="#optimization-flagIncludedChunks" class="headerlink" title="optimization.flagIncludedChunks"></a><code>optimization.flagIncludedChunks</code></h2><p><code>bool</code></p>
+<p>该配置项会使webpack确认当前标记的chunk是另外一个chunk的子集并且已经加载完成时，当前标记的chunk将不会再次加载（包含关系）。默认并且仅允许生产环境使用。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    flagIncludedChunks: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-occurrenceOrder"><a href="#optimization-occurrenceOrder" class="headerlink" title="optimization.occurrenceOrder"></a><code>optimization.occurrenceOrder</code></h2><p><code>bool</code></p>
+<p>使webpack可以按照顺序排列模块，从而可以得到最小的初始包。生产环境默认为true，其他环境下为false。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    occurrenceOrder: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-providedExports"><a href="#optimization-providedExports" class="headerlink" title="optimization.providedExports"></a><code>optimization.providedExports</code></h2><p><code>bool</code></p>
+<p>使webpack可以高效的导出来自<code>export * from ...</code>的代码。默认开启。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    providedExports: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-usedExports"><a href="#optimization-usedExports" class="headerlink" title="optimization.usedExports"></a><code>optimization.usedExports</code></h2><p><code>bool</code></p>
+<p>使webpack确定每个模块导出项（exports）的使用情况。依赖于<code>optimization.providedExports</code>的配置。<code>optimization.usedExports</code>收集到的信息会被其他优化项或产出代码使用到（模块未用到的导出项不会被导出，在语法完全兼容的情况下会把导出名称混淆为单个char）。为了最小化代码体积，未用到的的导出项目（exports）会被删除。生产环境默认开启。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    usedExports: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-concatenateModules"><a href="#optimization-concatenateModules" class="headerlink" title="optimization.concatenateModules"></a><code>optimization.concatenateModules</code></h2><p><code>bool</code></p>
+<p>使webpack可以把代码片段安全的合并为一个模块。依赖于<code>optimization.providedExports</code>和<code>optimization.usedExports</code>。生产环境默认开启。</p>
+<p><strong>webpack.comfig.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    concatenateModules: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-sideEffects"><a href="#optimization-sideEffects" class="headerlink" title="optimization.sideEffects"></a><code>optimization.sideEffects</code></h2><p><code>bool</code></p>
+<p>使webpack可以识别<code>package.json</code>中的<code>sideEffects</code>项。可以删除多余的导出项（如<code>import {a} from &#39;module&#39;</code>，只会打包<code>&#39;module/lib/a&#39;</code>，而不会把整个’module’打包进去）。</p>
+<p><strong>package.json</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"awesome npm module"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"sideEffects"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，<code>sideEffects</code>应该在<code>package.json</code>中，但并不意味着你需要在你的项目中把它设置为false（可能你的项目会需要用到某一个大的依赖）。</p>
+</blockquote>
+<p><code>optimization.sideEffects</code>依赖于<code>optimization.providedExports</code>。这会产生额外的构建时间，但是总体来说还是有更好的表现，因为代码量会大大减少。该优化项的优化效果取决于你的项目的第三方依赖情况。</p>
+<p>生产环境默认开启。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    sideEffects: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-portableRecords"><a href="#optimization-portableRecords" class="headerlink" title="optimization.portableRecords"></a><code>optimization.portableRecords</code></h2><p><code>bool</code></p>
+<p>该优化项会使webpack生成依赖项的相对路径。</p>
+<p>默认关闭。如果<a href="https://webpack.js.org/configuration/other-options/#recordspath" target="_blank" rel="noopener">recordsPath</a>，<a href="https://webpack.js.org/configuration/other-options/#recordsinputpath" target="_blank" rel="noopener">recordsInputPath</a>，<a href="https://webpack.js.org/configuration/other-options/#recordsoutputpath" target="_blank" rel="noopener">recordsOutputPath</a>中至少一项被配置，则开启。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    portableRecords: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/04/29/Webpack-Optimization/" data-id="ck1n687uw000jtcu6sdqvsgjr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/30/sublime启用vim模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          sublime启用vim模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/29/从零开始搭建多入口webpack4项目/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">从零开始搭建多入口webpack4项目</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活随笔/">生活随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nuxt-js/">Nuxt.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Nuxt-js/" style="font-size: 10px;">Nuxt.js</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/12/Nuxt-js-开发及部署/">Nuxt.js 开发及部署</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/时隔几个月的一篇唠叨/">时隔几个月的一篇唠叨</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/22/webpack优化二：打包分析/">webpack优化二：打包分析</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/webpack优化一：构建测速/">webpack优化一：构建测速</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/30/sublime启用vim模式/">sublime启用vim模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 葛潇林 hina_ge#163.com<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/canvas-nest.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

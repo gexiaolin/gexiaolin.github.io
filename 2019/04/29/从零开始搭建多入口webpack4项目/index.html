@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>从零开始搭建多入口webpack4项目 | 葛潇林</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介 搭建基础项目架构 开发中（dev-server） 模块（module）配置 生产环境的资源打包  搭建基础项目架构首先，webpack4对于Node.js版本是有要求的：  webpack4要求Node.js的最低版本为6.11.5    如果你的Node.js版本过低并进行了升级，然后在项目运行时出现了茫茫多的关于node-sass的报错，则需要重建node-sass环境。运行指令： 1n">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始搭建多入口webpack4项目">
+<meta property="og:url" content="http://hinapudao.github.io/2019/04/29/从零开始搭建多入口webpack4项目/index.html">
+<meta property="og:site_name" content="葛潇林">
+<meta property="og:description" content="简介 搭建基础项目架构 开发中（dev-server） 模块（module）配置 生产环境的资源打包  搭建基础项目架构首先，webpack4对于Node.js版本是有要求的：  webpack4要求Node.js的最低版本为6.11.5    如果你的Node.js版本过低并进行了升级，然后在项目运行时出现了茫茫多的关于node-sass的报错，则需要重建node-sass环境。运行指令： 1n">
+<meta property="og:locale" content="中文">
+<meta property="og:updated_time" content="2019-09-11T10:32:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始搭建多入口webpack4项目">
+<meta name="twitter:description" content="简介 搭建基础项目架构 开发中（dev-server） 模块（module）配置 生产环境的资源打包  搭建基础项目架构首先，webpack4对于Node.js版本是有要求的：  webpack4要求Node.js的最低版本为6.11.5    如果你的Node.js版本过低并进行了升级，然后在项目运行时出现了茫茫多的关于node-sass的报错，则需要重建node-sass环境。运行指令： 1n">
+  
+    <link rel="alternate" href="/atom.xml" title="葛潇林" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">葛潇林</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">我变秃了，也变强了</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hinapudao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer" id="article">
+        <section id="main"><article id="post-从零开始搭建多入口webpack4项目" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/29/从零开始搭建多入口webpack4项目/" class="article-date">
+  <time datetime="2019-04-29T07:23:56.000Z" itemprop="datePublished">2019-04-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      从零开始搭建多入口webpack4项目
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>搭建基础项目架构</li>
+<li>开发中（dev-server）</li>
+<li>模块（module）配置</li>
+<li>生产环境的资源打包</li>
+</ul>
+<h1 id="搭建基础项目架构"><a href="#搭建基础项目架构" class="headerlink" title="搭建基础项目架构"></a>搭建基础项目架构</h1><p>首先，webpack4对于<code>Node.js</code>版本是有要求的：</p>
+<blockquote>
+<p>webpack4要求Node.js的最低版本为<code>6.11.5</code>  </p>
+</blockquote>
+<p>如果你的Node.js版本过低并进行了升级，然后在项目运行时出现了茫茫多的关于<code>node-sass</code>的报错，则需要重建node-sass环境。运行指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm rebuild node-sass</span><br></pre></td></tr></table></figure>
+<hr>
+<p>创建一个多入口项目，按照我们的现有项目，目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">└ your-project</span><br><span class="line">  ├ src</span><br><span class="line">    ├ css</span><br><span class="line">    ├ js</span><br><span class="line">      ├ project1</span><br><span class="line">        ├ detail.js</span><br><span class="line">        └ index.js</span><br><span class="line">      └ project2</span><br><span class="line">        └ index.js</span><br><span class="line">    └ tpl</span><br><span class="line">      ├ project1</span><br><span class="line">        ├ detail.ejs</span><br><span class="line">        └ index.ejs</span><br><span class="line">      └ project2</span><br><span class="line">        └ index.ejs</span><br><span class="line">  ├ webpack.config.js</span><br><span class="line">  ├ webpack.production.config.js</span><br><span class="line">  └ package.json</span><br></pre></td></tr></table></figure>
+<p>安装<code>webpack</code>和<code>webpack-cli</code>（webpack4需要配合webpack-cli使用，社区也有相关的绕过cli的解决方案，但不是很推荐）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
+<p>新建默认配置入口<code>webpack.config.js</code>，虽然能看到webpack4在往0配置的方向发展，但是在大多数项目中的配置三板斧还是不能少的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        <span class="comment">// webpack4默认src/index.js为入口文件</span></span><br><span class="line">        <span class="comment">// 本次针对多入口项目做配置，第二节会去做入口文件的获取</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        <span class="comment">// 文件输出默认为dist/bundle.js</span></span><br><span class="line">        <span class="comment">// 第二节会去重新覆盖默认的输出项</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            <span class="comment">// module.rules在大多数情况仍然需要配置</span></span><br><span class="line">            <span class="comment">// 我们需要合适的loader去解析对应的文件格式（*.css, *.ejs, ...）</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    mode: <span class="string">'development'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>mode</code>为webpack4新增配置，默认值为<code>production</code>，根据字面意思可以猜到分别对应开发环境和生产环境，设置的模式会有对应的内部配置。该参数可以在cli中追加，也可以在config中配置（如上）。该参数在webpck4中为必需参数。</p>
+</blockquote>
+<blockquote>
+<p>具体可以参考<a href="https://webpack.docschina.org/concepts/mode/" target="_blank" rel="noopener"><strong>模式(mode)</strong></a>。</p>
+</blockquote>
+<h1 id="开发中（dev-server）"><a href="#开发中（dev-server）" class="headerlink" title="开发中（dev-server）"></a>开发中（dev-server）</h1><p>webpack4的开发环境搭建有两个推荐：<code>webpack-dev-server</code>（node + express）和<code>webpack-serve</code>（node + koa2）。</p>
+<p>如果要沿用我们比较熟悉的<code>webpack-dev-server</code>（<a href="https://github.com/webpack/webpack-dev-server" target="_blank" rel="noopener">传送门</a>）进行开发环境的搭建，需要安装对应的beta版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i webpack-dev-server@next -D</span><br></pre></td></tr></table></figure>
+<p>而<code>webpack-serve</code>（<a href="https://github.com/webpack-contrib/webpack-serve" target="_blank" rel="noopener">传送门</a>）作为升级版本，功能更加强大（<strong>也许也会有更多的坑，待踩</strong>），使用<code>WebSockets</code>做HMR(Hot Module Replacement 模块热替换)。这次我们就来体验一下<code>webpack-serve</code>，安装依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i webpack-serve -D</span><br></pre></td></tr></table></figure>
+<p>新建<code>serve.config.js</code>，安装依赖项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i glob yargs koa-router -D</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>警告！</strong>如果需要用cli命令启用服务的话，必需使用<strong>CommonJS</strong>规范语法。以下实例因为未使用CommonJS规范的原因只能使用node语法启动，因为我<strong>懒得改了</strong>。</p>
+</blockquote>
+<p>配置我们需要的配置项，然后为了便利考虑在根路由搭建目录列表：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// serve.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="comment">// glob用更方便的规则匹配需要的文件</span></span><br><span class="line"><span class="comment">// 参考地址 https://github.com/isaacs/node-glob</span></span><br><span class="line"><span class="keyword">const</span> glob = <span class="built_in">require</span>(<span class="string">'glob'</span>);</span><br><span class="line"><span class="keyword">const</span> serve = <span class="built_in">require</span>(<span class="string">'webpack-serve'</span>);</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>); <span class="comment">// 引入koa-router，配置根路由的展示内容</span></span><br><span class="line"><span class="keyword">const</span> WebpackConfig = <span class="built_in">require</span>(<span class="string">'./webpack.config.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更多配置项参考 https://github.com/webpack-contrib/webpack-serve</span></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    open: <span class="literal">true</span> <span class="comment">// 构建完成后是否自动在浏览器打开</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新建路由，输出目录结构</span></span><br><span class="line"><span class="keyword">let</span> directory = <span class="keyword">new</span> Router();</span><br><span class="line">directory.get(<span class="string">'/'</span>, <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="comment">// 拼接根路由的html DOM结构</span></span><br><span class="line">    <span class="keyword">let</span> html = <span class="string">`&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;&lt;ul&gt;`</span>;</span><br><span class="line">    <span class="comment">// 获取webpack入口文件，遍历生成目录结构</span></span><br><span class="line">    <span class="keyword">let</span> entries = WebpackConfig.entry;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> entries) &#123;</span><br><span class="line">        <span class="keyword">if</span> (key !== <span class="string">'commons'</span>) &#123;</span><br><span class="line">            html += <span class="string">`&lt;li&gt;&lt;a href="/pages/<span class="subst">$&#123;key&#125;</span>.html"&gt;<span class="subst">$&#123;key&#125;</span>&lt;/a&gt;&lt;/li&gt;`</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    html += <span class="string">`&lt;/ul&gt;`</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出html结构</span></span><br><span class="line">    ctx.body = html;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 装载子路由</span></span><br><span class="line"><span class="keyword">let</span> router = <span class="keyword">new</span> Router();</span><br><span class="line">router.use(<span class="string">'/'</span>, directory.routes(), directory.allowedMethods());</span><br><span class="line"></span><br><span class="line">serve(config, &#123;</span><br><span class="line">    WebpackConfig,</span><br><span class="line">    add: <span class="function">(<span class="params">app, middleware</span>) =&gt;</span> &#123;</span><br><span class="line">        middleware.webpack();</span><br><span class="line">        middleware.content();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 加载路由中间件，路由**必需**作为最后一个中间件添加</span></span><br><span class="line">        app.use(router.routes());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// to do ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<hr>
+<p>在目录页的搭建时用到了webpack配置中的<code>entry</code>项（入口文件），接下来我们需要在<code>webpack.config.js</code>中获取我们项目的所有入口文件，并指定输出规则（<code>output</code>）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// path参考 http://nodejs.cn/api/path.html</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> glob = <span class="built_in">require</span>(<span class="string">'glob'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> SRC_PATH = path.resolve(__dirname, <span class="string">'./src'</span>);</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多入口项目获取入口对象</span></span><br><span class="line"><span class="keyword">let</span> entries = (<span class="function"><span class="params">entryPath</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> files = &#123;&#125;,</span><br><span class="line">        filesPath;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 传入的entryPath为src/js文件夹路径</span></span><br><span class="line">    <span class="comment">// 如果有不需要作为入口js获取的文件／文件夹，在options项添加ignore配置来进行筛除</span></span><br><span class="line">    filesPath = glob.sync(entryPath + <span class="string">'/**/*.js'</span>, &#123;</span><br><span class="line">        <span class="comment">// options ...  </span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    filesPath.forEach(<span class="function">(<span class="params">entry, index</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 获取并简化入口文件对象的键名</span></span><br><span class="line">        <span class="keyword">let</span> chunkName = path.relative(entryPath, entry).replace(<span class="regexp">/\.js$/i</span>, <span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">        files[chunkName] = entry;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回多入口文件对象</span></span><br><span class="line">    <span class="keyword">return</span> files;</span><br><span class="line">&#125;)(path.join(SRC_PATH, <span class="string">'js'</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    entry: entries,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">        filename: <span class="string">'js/[name].[hash:7].js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>在<code>package.json</code>中写入启动脚本（<strong>再次友情提示！建议使用CommonJS规范书写<code>serve.config.js</code>，以便使用推荐的cli命令！</strong>）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">        <span class="attr">"dev"</span>: <span class="string">"node ./serve.config.js"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="模块（module）配置"><a href="#模块（module）配置" class="headerlink" title="模块（module）配置"></a>模块（module）配置</h1><blockquote>
+<p>webpack4依然不支持把<code>css</code>和<code>html</code>作为模块，相关格式的loader配置仍然是必需项。<br>根据社区的开发计划，webpack5也许会解决这个问题（把<code>css</code>和<code>html</code>视作模块读取）。</p>
+</blockquote>
+<h2 id="处理scss-css文件"><a href="#处理scss-css文件" class="headerlink" title="处理scss/css文件"></a>处理scss/css文件</h2><p>在webpack4之前我们都是用<code>extract-text-webpack-plugin</code>(<a href="https://github.com/webpack-contrib/extract-text-webpack-plugin" target="_blank" rel="noopener">传送门</a>)来抽离已经被<code>sass-loader</code>、<code>css-loader</code>解析完成的css为<strong>独立的外部css文件</strong>，它的beta版本也对webpack4做了支持，但是仅支持<code>4.2.0</code>以下版本，因此我们应尽量选择版本向上兼容度更好的其他依赖。</p>
+<p><strong>解决方案：</strong>使用官方新推荐的<code>mini-css-extract-plugin</code>(<a href="https://github.com/webpack-contrib/mini-css-extract-plugin" target="_blank" rel="noopener">传送门</a>)作替代。</p>
+<p><strong>注意：</strong>loader的解析顺序为从后往前，顺序混乱可能会引起一些报错。</p>
+<p>安装依赖项目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm i mini-css-extract-plugin css-loader postcss-loader node-sass sass-loader -D</span><br><span class="line">cnpm i autoprefixer -D</span><br></pre></td></tr></table></figure>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>);</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 如果不希望把已经解析完成的css文件单独抽离引入，而是希望以style标签对的形式插入页面</span></span><br><span class="line">                <span class="comment">// 可以把MiniCssExtractPlugin.loader替换为style-loader</span></span><br><span class="line">                test: <span class="regexp">/\.(c|sa|sc)ss$/</span>,</span><br><span class="line">                use: [</span><br><span class="line">                    MiniCssExtractPlugin.loader,</span><br><span class="line">                    <span class="string">'css-loader'</span>,</span><br><span class="line">                    &#123;</span><br><span class="line">                        loader: <span class="string">'postcss-loader'</span>,</span><br><span class="line">                        options: &#123;</span><br><span class="line">                            plugins: <span class="function"><span class="params">()</span> =&gt;</span> [</span><br><span class="line">                                <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)(&#123;</span><br><span class="line">                                    <span class="string">'browsers'</span>: [<span class="string">'&gt; 1%'</span>, <span class="string">'last 10 versions'</span>]</span><br><span class="line">                                &#125;)</span><br><span class="line">                            ]</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    <span class="string">'sass-loader'</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            ...</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="comment">// 指定抽离出的css文件的输出规则</span></span><br><span class="line">        <span class="comment">// 如果使用style-loader，不需要以下配置</span></span><br><span class="line">        <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">            filename: <span class="string">'css/[name].[hash:7].css'</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>module模块不再支持loader配置项，需要使用use项做升级</p>
+</blockquote>
+<h2 id="ejs模版语言处理"><a href="#ejs模版语言处理" class="headerlink" title="ejs模版语言处理"></a>ejs模版语言处理</h2><p>正常情况下，使用我们之前的<code>ejs-compiled-loader</code>仍然可以正常解析ejs模版，但是在一些未知的条件下会出现this指针相关的报错（如pc_v1项目）。目前没有找到合适的替代依赖。</p>
+<p><strong>解决方案：</strong>根据热心网友提供的PR，可以暂时使用<code>ejs-zdm-loader</code>做应急策略。</p>
+<p>安装依赖项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i ejs-zdm-loader -D</span><br></pre></td></tr></table></figure>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        ...</span><br><span class="line">        &#123;</span><br><span class="line">            test: <span class="regexp">/\.ejs$/i</span>,</span><br><span class="line">            use: <span class="string">'ejs-zdm-loader'</span></span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="js公共模块抽离"><a href="#js公共模块抽离" class="headerlink" title="js公共模块抽离"></a>js公共模块抽离</h2><p>在webpack4之前，对于公共依赖的抽离使用的是<code>CommonsChunkPlugin</code>，webpack4对于该插件已经做了<strong>废弃处理</strong>，相对的，提供了更便捷的<a href="https://webpack.docschina.org/plugins/split-chunks-plugin/" target="_blank" rel="noopener">SplitChunksPlugin</a>作为新的解决方案。相关api在官方文档可以查看。</p>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    optimization: &#123;</span><br><span class="line">        splitChunks: &#123;</span><br><span class="line">            chunks: <span class="string">'all'</span>,</span><br><span class="line">            minChunks: <span class="number">1</span>,</span><br><span class="line">            name: <span class="literal">true</span>,</span><br><span class="line">            cacheGroups: &#123;</span><br><span class="line">                commons: &#123;</span><br><span class="line">                    name: <span class="string">'commons'</span>,</span><br><span class="line">                    minChunks: <span class="number">2</span>,</span><br><span class="line">                    <span class="comment">// minSize设置为0只为demo体现抽离效果，建议保持默认的30000</span></span><br><span class="line">                    <span class="comment">// 该设置过小会可能导致网络请求无必要的增加一次</span></span><br><span class="line">                    minSize: <span class="number">0</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="其他plugins"><a href="#其他plugins" class="headerlink" title="其他plugins"></a>其他plugins</h2><p>到目前为止我们已经做了入口文件的获取，各种文件格式的解析抽离，并指定了输出规则，但是并没有实际的输出html文件。</p>
+<p>仍然使用<code>html-webpack-plugin</code>，升级到支持webpack4的最新版本。</p>
+<p>安装依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i html-webpack-plugin -D</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong><code>html-webpack-plugin</code>每次只能生成一个.html文件，所以在多入口项目中需要对入口文件进行遍历。</p>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    plugins: [</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// 把$变量暴露到全局</span></span><br><span class="line">        <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">            $: <span class="string">'jquery'</span>,</span><br><span class="line">            jQuery: <span class="string">'jquery'</span>,</span><br><span class="line">            <span class="string">'window.jQuery'</span>: <span class="string">'jquery'</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> pages = <span class="built_in">Object</span>.keys(entries);</span><br><span class="line">pages.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    config.plugins.push(<span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">        showErrors: <span class="literal">false</span>,</span><br><span class="line">        filename: path.join(__dirname, <span class="string">`/dist/pages/<span class="subst">$&#123;item&#125;</span>.html`</span>),</span><br><span class="line">        template: path.join(__dirname, <span class="string">`/src/tpl/<span class="subst">$&#123;item&#125;</span>.ejs`</span>),</span><br><span class="line">        chunks: [<span class="string">'commons'</span>, item]</span><br><span class="line">    &#125;)); </span><br><span class="line">&#125;);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>到目前为止，我们已经完成了开发环境的所有配置，可以使用<code>npm run dev</code>来看看项目是否已经正常启动。完整配置可以参考<strong><a href="https://github.com/hinapudao/webpack4/blob/master/webpack.config.js" target="_blank" rel="noopener">这里</a></strong>。</p>
+</blockquote>
+<h1 id="生产环境的资源打包"><a href="#生产环境的资源打包" class="headerlink" title="生产环境的资源打包"></a>生产环境的资源打包</h1><p>万里长征最后一步，配置生产环境，压缩静态资源，用chunk hash代替编译hash。</p>
+<blockquote>
+<p>chunk hash可以根据文件内容生成hash，在文件内容无更改时不会生成新hash。而编译hash会在每次项目编译的时候重新生成，所以不建议使用在生产环境。</p>
+</blockquote>
+<p>为了方便书写，免去变量区分，我们新建一个<code>webpack.production.config.js</code>来配置生产环境。在webpack4下，我们不再需要<code>UglifyJsPlugin</code>来压缩js代码，只需要配置<a href="https://webpack.docschina.org/concepts/mode/" target="_blank" rel="noopener"><strong>模式(mode)</strong></a>为<code>production</code>即可。</p>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.production.config.js</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    mode: <span class="string">'production'</span>,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于静态资源的编译顺序为<strong>js依赖编译</strong> &gt; <strong>编译css</strong> &gt; <strong>抽离css资源为单独文件</strong> &gt; <strong>编译并压缩js</strong>，所以以上配置并不会压缩css文件，所以我们需要单独处理一下生产环境的css资源。</p>
+</blockquote>
+<p>webpack4下我们尝试使用<a href="https://github.com/NMFR/optimize-css-assets-webpack-plugin" target="_blank" rel="noopener">optimize-css-assets-webpack-plugin</a>来压缩css文件。</p>
+<p>首先安装依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i optimize-css-assets-webpack-plugin -D</span><br></pre></td></tr></table></figure>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.production.config.js</span></span><br><span class="line"><span class="keyword">const</span> OptimizeCSSAssetsPlugin = <span class="built_in">require</span>(<span class="string">'optimize-css-assets-webpack-plugin'</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    optimization: &#123;</span><br><span class="line">        minimizer: [</span><br><span class="line">            <span class="keyword">new</span> OptimizeCSSAssetsPlugin(&#123;</span><br><span class="line">                cssProcessorOptions: &#123;</span><br><span class="line">                    <span class="comment">// postcss-loader解析css过程中已经添加了autoprefixer兼容</span></span><br><span class="line">                    <span class="comment">// 此处需要设置为false</span></span><br><span class="line">                    autoprefixer: <span class="literal">false</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>最后，我们需要用chunk hash代替编译hash。</p>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.production.config.js</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">        filename: <span class="string">'js/[name].[chunkhash:7].js'</span>,</span><br><span class="line">        publicPath: <span class="string">'./'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">            filename: <span class="string">'css/[name].[contenthash:7].css'</span></span><br><span class="line">        &#125;),</span><br><span class="line">        ...</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>添加webpack打包命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;scripts&quot;: &#123;</span><br><span class="line">        &quot;dev&quot;: &quot;node ./serve.config.js&quot;,</span><br><span class="line">        &quot;build&quot;: &quot;rm -rf dist &amp;&amp; npx webpack --config webpack.production.config.js&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>完整的生产环境配置可以参考<a href="https://github.com/hinapudao/webpack4/blob/master/webpack.production.config.js" target="_blank" rel="noopener">这里</a>。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/04/29/从零开始搭建多入口webpack4项目/" data-id="ck1n687uy000ltcu6y9qhoq1l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/29/Webpack-Optimization/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Webpack Optimization
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活随笔/">生活随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nuxt-js/">Nuxt.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Nuxt-js/" style="font-size: 10px;">Nuxt.js</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/12/Nuxt-js-开发及部署/">Nuxt.js 开发及部署</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/时隔几个月的一篇唠叨/">时隔几个月的一篇唠叨</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/22/webpack优化二：打包分析/">webpack优化二：打包分析</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/webpack优化一：构建测速/">webpack优化一：构建测速</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/30/sublime启用vim模式/">sublime启用vim模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 葛潇林 hina_ge#163.com<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/canvas-nest.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

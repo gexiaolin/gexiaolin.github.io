@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>葛潇林</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端">
+<meta property="og:type" content="website">
+<meta property="og:title" content="葛潇林">
+<meta property="og:url" content="http://hinapudao.github.io/index.html">
+<meta property="og:site_name" content="葛潇林">
+<meta property="og:locale" content="中文">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="葛潇林">
+  
+    <link rel="alternate" href="/atom.xml" title="葛潇林" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">葛潇林</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">我变秃了，也变强了</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hinapudao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer" id="article">
+        <section id="main">
+  
+    <article id="post-Nuxt-js-开发及部署" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/12/Nuxt-js-开发及部署/" class="article-date">
+  <time datetime="2019-10-12T06:20:04.000Z" itemprop="datePublished">2019-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/12/Nuxt-js-开发及部署/">Nuxt.js 开发及部署</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Nuxt-js-是什么"><a href="#Nuxt-js-是什么" class="headerlink" title="Nuxt.js 是什么"></a>Nuxt.js 是什么</h2><p>Nuxt.js 是一个基于 Vue.js 的通用应用框架，预设了利用 Vue.js 开发服务端渲染的应用所需要的各种配置，提供异步数据加载、中间件、布局支持等。</p>
+<p>与传统的 <code>csr</code> (client-side-render) 相比，Nuxt.js封装的 <code>ssr</code> (server-side-render) 解决方案可以更好的支持 seo ，且白屏时间可减少大约 50% ，极大的提升用户的访问体验。</p>
+<h2 id="项目目录结构"><a href="#项目目录结构" class="headerlink" title="项目目录结构"></a>项目目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">·</span><br><span class="line">├── README.md</span><br><span class="line">├── nuxt.config.js             # nuxt配置，文档地址：https://zh.nuxtjs.org/guide/configuration</span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json</span><br><span class="line">├── server                     # express服务</span><br><span class="line">└── src                        # 开发目录</span><br><span class="line">    ├── app.html               # html模版</span><br><span class="line">    ├── assets                 # 公共资源</span><br><span class="line">    ├── components             # 页面开发子组件</span><br><span class="line">    ├── layouts                # 组件布局(https://zh.nuxtjs.org/guide/views#%E5%B8%83%E5%B1%80)</span><br><span class="line">    │   ├── default.vue        # 默认模版</span><br><span class="line">    │   └── error.vue          # 错误页面模版</span><br><span class="line">    ├── middleware             # 中间件(https://zh.nuxtjs.org/guide/routing#%E4%B8%AD%E9%97%B4%E4%BB%B6)</span><br><span class="line">    ├── pages                  # 页面开发主文件夹</span><br><span class="line">    ├── plugins                # 自定义插件(https://zh.nuxtjs.org/guide/plugins)</span><br><span class="line">    ├── static                 # 静态资源，根路由&apos;/&apos;指向该文件夹</span><br><span class="line">    └── store                  # vuex</span><br></pre></td></tr></table></figure>
+<p>为了符合前端开发习惯，我们把通过 Nuxt.js cli 构建的目录结构做了一些微小的调整：前端相关开发内容放入了 <code>src</code> 文件夹，同时把 nuxt config 的开发默认路径改为 src 下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// next.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  srcDir: <span class="string">'src/'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="本地开发"><a href="#本地开发" class="headerlink" title="本地开发"></a>本地开发</h2><blockquote>
+<p>注意，在 <code>Vue</code> 组件的生命周期中，<code>beforeCreate</code> 和 <code>created</code> 会在 <strong>客户端和服务端调用</strong>，其他生命周期仅在客户端调用。</p>
+</blockquote>
+<h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><p>默认 host 为 <code>localhost</code> , 端口号为 <code>3000</code> ，可在 <code>nuxt.config.js</code> 中覆盖默认配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  server: &#123;</span><br><span class="line">    port: <span class="number">8080</span>,</span><br><span class="line">    host: process.env.NODE_ENV === <span class="string">'production'</span> ? <span class="string">'0.0.0.0'</span> : <span class="string">'local.xxx.com'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果需要扩展/添加 express 中间件，可以修改 <code>server/index.js</code> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myMiddleWare = <span class="built_in">require</span>(<span class="string">'myMiddleWare'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line">app.use(myMiddleWare);</span><br></pre></td></tr></table></figure>
+<h3 id="layouts"><a href="#layouts" class="headerlink" title="layouts"></a>layouts</h3><p><code>src/layouts</code> 文件夹存放默认及自定义布局模版，<code>default.vue</code> 为默认通用模版，<code>error.vue</code>  为错误页面模版（接收上下文 <code>error</code> 对象）。</p>
+<p>我们也可以自定义布局模版，通过 <code>&lt;nuxt/&gt;</code> 标签获取开发组件内容。比如我们新增 <code>layouts/example.vue</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;example header&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;nuxt/</span>&gt;</span><br><span class="line">    &lt;div&gt;example footer&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在开发组件中使用自定义布局模版：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;!-- 开发组件内容 --&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  layout: 'example' /</span><span class="regexp">/ 指定渲染的布局模版</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="error"><a href="#error" class="headerlink" title="error"></a>error</h3><p>我们可以通过编辑 <code>layouts/error.vue</code> 文件来定制自己的错误页面。</p>
+<blockquote>
+<p>虽然此文件放在 layouts 文件夹中, 但应该将它看作是一个 页面(page)。</p>
+</blockquote>
+<p><code>error.vue</code> 接收上下文的 <code>error</code> 对象，改对象参数应该包含两个字段，分别为 <code>statusCode</code> （错误码）及 <code>message</code> （错误信息）:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span>&gt;</span><br><span class="line">    &lt;h1 v-<span class="keyword">if</span>=<span class="string">"error.statusCode === 404"</span>&gt;页面不存在&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h1 v-else&gt;应用发生错误异常：&#123;&#123;error.message&#125;&#125;&lt;/</span>h1&gt;</span><br><span class="line">    &lt;nuxt-link to=<span class="string">"/"</span>&gt;首 页&lt;<span class="regexp">/nuxt-link&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="router"><a href="#router" class="headerlink" title="router"></a>router</h3><p>项目支持常用的 <code>vue router</code> 路由跳转，使用方式也很简单，只需要使用 <code>&lt;nuxt-link to=&quot;&quot;&gt;&lt;/nuxt-link&gt;</code> 标签代理 <code>a</code> 标签，<code>to</code> 属性内应放置项目结构内已有的相对路由。</p>
+<p>同样的，我们也可以在不希望以 <code>vue router</code> 方式跳转的地方使用 <code>a</code> 标签。</p>
+<h3 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h3><p>插件放置在 <code>src/plugin/</code> 目录，会在 Vue 应用程序之前执行，接收 <code>context</code> 上下文作为第一个参数。</p>
+<p>插件的执行环境分三种：仅在客户端执行、仅在服务端执行、在客户端和服务端都执行。具体的置顶执行环境方式如下配置：</p>
+<p>1、通过命名格式指定执行环境：</p>
+<ul>
+<li><code>x.client.js</code> 仅在客户端执行</li>
+<li><code>x.server.js</code> 仅在服务端执行</li>
+<li><code>x.js</code> 在客户端和服务端双端执行</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nuxt.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugin: [</span><br><span class="line">    <span class="string">'~/plugins/plugin.client.js'</span></span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>2、通过 ssr 字段置顶执行环境：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nuxt.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugin: [</span><br><span class="line">    &#123;</span><br><span class="line">      src: <span class="string">'~/plugins/plugin.js'</span>,</span><br><span class="line">      <span class="comment">// ssr: true 注意，ssr 字段即将弃用，改为 mode 字段</span></span><br><span class="line">      mode: <span class="string">'server'</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>插件的具体使用方法：<a href="https://zh.nuxtjs.org/guide/plugins" target="_blank" rel="noopener">传送门</a></p>
+<h3 id="middleware"><a href="#middleware" class="headerlink" title="middleware"></a>middleware</h3><p>中间件放置在 <code>src/middleware/</code> 目录，接收 <code>context</code> 上下文作为第一个参数。中间件会在路由改变时调用：</p>
+<ul>
+<li>在 <code>nuxt.config.js</code> 中配置，会在每个路由改变时调用</li>
+<li>也可不做全局配置，改为 <code>layouts</code> 或者自定义开发组件内调用</li>
+</ul>
+<p>中间件的具体使用方法：<a href="https://zh.nuxtjs.org/guide/routing#%E4%B8%AD%E9%97%B4%E4%BB%B6" target="_blank" rel="noopener">传送门</a></p>
+<h3 id="store"><a href="#store" class="headerlink" title="store"></a>store</h3><p>Vuex 状态树在 Nuxt.js 内核做了实现，支持两种 <code>store</code> 方式：</p>
+<ul>
+<li>模块方式：<code>src/store/</code> 目录下的每个 <code>.js</code> 文件会被转换为状态树 <strong>指定命名的子模块</strong></li>
+<li>Classic方式：传统 Vuex 语法使用，不建议，根据构建 warning 提示，会在3.0版本移除（目前为2.9.x）</li>
+</ul>
+<p>参考地址：<a href="https://zh.nuxtjs.org/guide/vuex-store" target="_blank" rel="noopener">传送门</a></p>
+<h3 id="asyncData-方法"><a href="#asyncData-方法" class="headerlink" title="asyncData 方法"></a>asyncData 方法</h3><p><code>asyncData</code> 方法会在组件（限于页面组件）每次加载之前被调用。它可以在 <strong>服务端</strong> 或 <strong>路由更新</strong> 之前被调用，接收 context 上下文作为第一个参数。Nuxt.js 会将 <code>asyncData</code> 返回的数据融合组件 <code>data</code> 方法返回的数据一并返回给当前组件。</p>
+<blockquote>
+<p>该方法在 Vue 实例化之前调用，因此不能通过 <code>this</code> 获取 Vue 实例</p>
+</blockquote>
+<h3 id="fetch-方法"><a href="#fetch-方法" class="headerlink" title="fetch 方法"></a>fetch 方法</h3><p>fetch 方法会在渲染页面前被调用，作用是填充状态树 (store) 数据，接收 context 上下文作为第一个参数。与 asyncData 方法类似，不同的是它不会设置组件的数据。例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  fetch (&#123; store, params, $axios &#125;) &#123;</span><br><span class="line">    store.commit(<span class="string">'getUrl'</span>, <span class="string">'url'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="validate-方法"><a href="#validate-方法" class="headerlink" title="validate 方法"></a>validate 方法</h3><p><code>validate</code> 可以在动态路由对应的页面组件中配置一个校验方法用于校验动态路由参数的有效性。接收 context 上下文作为第一个参数。例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">validate(&#123; params, query &#125;) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="regexp">/^\d+$/</span>.test(params.id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="context-上下文对象"><a href="#context-上下文对象" class="headerlink" title="context 上下文对象"></a>context 上下文对象</h3><p>在上面的介绍中，我们一直提到上下文对象，它包含 Vue 根实例，Vue Router 路由，Vuex 状态树，error 错误方法，redirect 跳转方法等等内容，可以参考<a href="https://zh.nuxtjs.org/api/context/" target="_blank" rel="noopener">这里</a>。</p>
+<h3 id="Caching-Components-组件缓存"><a href="#Caching-Components-组件缓存" class="headerlink" title="Caching Components 组件缓存"></a>Caching Components 组件缓存</h3><p>Vue 由于创建组件实例和 Virtual DOM 节点的成本，它无法与纯粹基于字符串的模板（php）的性能相匹配。在 SSR 性能至关重要的情况下，合理地利用缓存策略可以大大缩短响应时间并减少服务器负载。</p>
+<p>安装依赖：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i @nuxtjs/component-cache -D</span><br></pre></td></tr></table></figure>
+<p>新增组件缓存配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nuxt.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  modules: [</span><br><span class="line">    [<span class="string">'@nuxtjs/component-cache'</span>, &#123;</span><br><span class="line">      max: <span class="number">10000</span>,</span><br><span class="line">      maxAge: <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span></span><br><span class="line">    &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可缓存组件必须定义唯一 <code>name</code> 选项</li>
+<li>不应该缓存组件的情况<ul>
+<li>可能拥有依赖 <code>global</code> 数据的子组件</li>
+<li>具有在渲染 <code>context</code> 中产生副作用的子组件</li>
+</ul>
+</li>
+</ul>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><h3 id="静态应用部署"><a href="#静态应用部署" class="headerlink" title="静态应用部署"></a>静态应用部署</h3><p>以下命令生成应用的静态目录和文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run generate</span><br></pre></td></tr></table></figure>
+<p>适合范围：spa 中小型应用，可控的动态路由页面。详细信息参考<a href="https://zh.nuxtjs.org/guide/commands" target="_blank" rel="noopener">这里</a></p>
+<h3 id="服务端渲染应用部署"><a href="#服务端渲染应用部署" class="headerlink" title="服务端渲染应用部署"></a>服务端渲染应用部署</h3><p>以下命令进行项目编译构建，然后启动服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nuxt build</span><br><span class="line">nuxt start</span><br></pre></td></tr></table></figure>
+<p>详细信息参考<a href="https://zh.nuxtjs.org/guide/commands" target="_blank" rel="noopener">这里</a></p>
+<blockquote>
+<p>部署方式在官方文档有详细描述，不做过多解释。</p>
+</blockquote>
+<h3 id="使用-pm2-进行服务进程管理"><a href="#使用-pm2-进行服务进程管理" class="headerlink" title="使用 pm2 进行服务进程管理"></a>使用 pm2 进行服务进程管理</h3><p>在我们实际开发环境中，直接 <code>nuxt start</code> 跑起来的项目可能并不能满足我们的需求，原因包含且不限于：无法后台运行，无法热重启等等。</p>
+<p>使用 pm2 的原因：</p>
+<ul>
+<li>可以内建负载均衡（使用 Node cluster 集群模块）</li>
+<li>后台运行</li>
+<li>0 秒停机重载，我理解大概意思是维护升级的时候不需要停机.</li>
+<li>停止/重启不稳定的进程（避免无限循环或内存溢出）</li>
+</ul>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>全局安装 pm2 ：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm i -g pm2</span><br></pre></td></tr></table></figure>
+<h4 id="pm2-管理配置"><a href="#pm2-管理配置" class="headerlink" title="pm2 管理配置"></a>pm2 管理配置</h4><p>新增 <code>process.json</code> :</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"apps"</span>: [&#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"nuxt"</span>,</span><br><span class="line">        <span class="attr">"script"</span>: <span class="string">"./server/index.js"</span>,</span><br><span class="line">        <span class="attr">"args"</span>: <span class="string">"--kill-timeout 10000"</span>,</span><br><span class="line">        <span class="attr">"watch"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"ignore_watch"</span>: [<span class="string">"node_modules"</span>, <span class="string">"build"</span>, <span class="string">"logs"</span>],</span><br><span class="line">        <span class="attr">"out_file"</span>: <span class="string">"logs/nuxt_out.log"</span>,</span><br><span class="line">        <span class="attr">"error_file"</span>: <span class="string">"logs/nuxt_error.log"</span>,</span><br><span class="line">        <span class="attr">"max_memory_restart"</span>: <span class="string">"1G"</span>,</span><br><span class="line">        <span class="attr">"env"</span>: &#123;</span><br><span class="line">            <span class="attr">"NODE_ENV"</span>: <span class="string">"production"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"log_date_format"</span>: <span class="string">"YYYY-MM-DD HH:mm Z"</span>,</span><br><span class="line">        <span class="attr">"instance_var"</span>: <span class="string">"INSTANCE_ID"</span>,</span><br><span class="line">        <span class="attr">"exec_mode"</span>: <span class="string">"cluster"</span>,</span><br><span class="line">        <span class="attr">"instances"</span>: <span class="string">"0"</span>,</span><br><span class="line">        <span class="attr">"autorestart"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大概介绍几个比较重要的配置项：</p>
+<ul>
+<li>exec_mode：默认为 <code>fork</code> 模式，单服务进程，无法热重启。这里我们修改为 <code>cluster</code> 模式，内建负载均衡</li>
+<li>instances：进程数，可手动设置，0 或 ‘max’ 会根据服务器核数分配进程数</li>
+<li>autorestart：设置为 true , 在内存溢出或其他极端情况下重启服务</li>
+</ul>
+<h4 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h4><p>我们可以执行以下命令运行我们的 Nuxt.js 项目：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start process.json</span><br></pre></td></tr></table></figure>
+<p>然后执行 <code>pm2 list</code> 可以看到各个服务进程的详细信息。</p>
+<p>执行以下命令进行热重启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 reload nuxt # 使用process.json里的name配置进行服务管理</span><br></pre></td></tr></table></figure>
+<h4 id="startOrGracefulReload-实现符合-node-js-特性的热重启"><a href="#startOrGracefulReload-实现符合-node-js-特性的热重启" class="headerlink" title="startOrGracefulReload 实现符合 node.js 特性的热重启"></a>startOrGracefulReload 实现符合 node.js 特性的热重启</h4><p>如果按照之前 reload 的方法进行热重启，且用户刷新的够快够频繁，还是会在重启过程中看到两三秒的502页面，原因在于 node.js 服务的单线程 <strong>异步</strong> 非阻塞I/O模型。异步的特性导致集群中的某一个服务并没有完全启动，但是代码已经执行结束，导致 pm2 直接进行下一线程的服务重启工作，因此我们选择使用 <code>startOrGracefulReload</code> 作为热重启手段。</p>
+<p>首先对 <code>server/index.js</code> 做一些改造：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = app.listen(port, host);</span><br><span class="line">process.on(<span class="string">'SIGINT'</span>, () =&gt; &#123;</span><br><span class="line">  server.close();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，express()本身不是一个server实例，但是express().listen()会返回server实例，因此我们在调用close()方法的时候要注意调用对象是否正确</p>
+</blockquote>
+<p>执行以下命令以完成符合 node.js 特性的热重启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 startOrGracefulReload process.json</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/10/12/Nuxt-js-开发及部署/" data-id="ck1n687uv000itcu6jfbv7jpm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nuxt-js/">Nuxt.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-时隔几个月的一篇唠叨" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/10/时隔几个月的一篇唠叨/" class="article-date">
+  <time datetime="2019-09-10T11:45:30.000Z" itemprop="datePublished">2019-09-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/生活随笔/">生活随笔</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/10/时隔几个月的一篇唠叨/">时隔几个月的一篇唠叨</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近一直在忙一些不知所谓的事情，发现无论是github还是当初决心要坚持的blog都停止了更新。</p>
+<p>不知道从什么时候开始，每天都在像陀螺一样转。做不完的需求，讲不完的代码，举步维艰的新项目推进。负能量就像气泵里充足的气体一样每天都在疯狂打进自己的体内，在爆炸的边缘疯狂试探。</p>
+<p>坐在工位就在想离职，躺进被子就希望天永远别亮。</p>
+<p>甚至在想：不如回家吧，别敲代码了。</p>
+<p>甚至似乎已经忘了自己这些年有多喜欢这个行业。</p>
+<hr>
+<p>前些日子离职了一位同事，他说他不敲代码了，要回家跟着家人学做生意。</p>
+<p>再前些日子，一位关系很好的搞设计的朋友说，明年准备回家了。我问回家干啥啊，不做设计了吗。他说随便找个小广告公司搞搞平面，也活得下去，北京太没有生活了。</p>
+<p>我突然就不知道该怎么接话茬了。也许是羡慕他的决断吧。</p>
+<hr>
+<p>今天面试了一个八年经验的前端，补之前离职同事的空缺。从业年限长，有大厂背景，翻来覆去却只有jquery和vue，突然就感觉很难受。我能感受到他非常需要这份工作，也许是因为房子，也许是因为孩子，或者是因为生活中其他的事情，但是这个年纪，匹配这种技术能力，实在是有点一言难尽。</p>
+<p>我不知道该跟他再说些什么，但是我知道如果我到了他的年纪，无论是否还从事这个行业，都不希望让人感觉我这些年是在混日子。</p>
+<hr>
+<p>打起精神。加油。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/09/10/时隔几个月的一篇唠叨/" data-id="ck1n687uh0005tcu6v2bc6xbu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-webpack优化二：打包分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/22/webpack优化二：打包分析/" class="article-date">
+  <time datetime="2019-05-21T20:03:33.000Z" itemprop="datePublished">2019-05-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/22/webpack优化二：打包分析/">webpack优化二：打包分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>webpack4.x新增了更加便利的<code>splitChunks</code>（<a href="https://github.com/hinapudao/SplitChunksPlugin" target="_blank" rel="noopener">文档翻译</a>），可以帮助我们对项目的js进行提取分割，以便更好的长效缓存。但是提取规则是否合适，我们希望提取的模块是否按照预期进行，是否有可视化的插件可以明确的展示给我们？</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p><a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank" rel="noopener"><code>webpack-bundle-analyzer</code></a>是一个可以把webpack打包输出的bundles以可视化的块状图展示每个modules的输出大小及来源路径。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev webpack-bundle-analyzer</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add -D webpack-bundle-analyzer</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>webpack配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> BundleAnalyzerPlugin = <span class="built_in">require</span>(<span class="string">'webpack-bundle-analyzer'</span>).BundleAnalyzerPlugin;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> BundleAnalyzerPlugin(&#123;</span><br><span class="line">      analyzerMode: <span class="string">'server'</span>,</span><br><span class="line">      analyzerHost: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">      analyzerPort: <span class="number">8889</span>,</span><br><span class="line">      reportFilename: <span class="string">'report.html'</span>,</span><br><span class="line">      defaultSizes: <span class="string">'parsed'</span>,</span><br><span class="line">      openAnalyzer: <span class="literal">true</span>,</span><br><span class="line">      generateStatsFile: <span class="literal">false</span>,</span><br><span class="line">      statsFilename: <span class="string">'stats.json'</span>,</span><br><span class="line">      statsOptions: <span class="literal">null</span>,</span><br><span class="line">      logLevel: <span class="string">'info'</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>添加脚本：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scripts: &#123;</span><br><span class="line">  "analyz": "NODE_ENV=production npm_config_report=true npm run build"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>npm run build</code>之后会展示资源的打包情况。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/05/22/webpack优化二：打包分析/" data-id="ck1n687uf0004tcu6crv3n0q7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-webpack优化一：构建测速" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/06/webpack优化一：构建测速/" class="article-date">
+  <time datetime="2019-05-06T13:50:37.000Z" itemprop="datePublished">2019-05-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/06/webpack优化一：构建测速/">webpack优化一：构建测速</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着项目体积的逐渐庞大，webpack的构建速度逐渐变得”年老体衰”，开发环境构建的时间都够打把斗地主了，实在是难以忍受。虽然文档上有那么大一个optimization，但是应该从哪儿着手优化却让我有点找不着北。所以想着如果有什么plugin可以打印出构建过程中每一步的耗时就好了。</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p><code>Speed Measure Plugin</code> (<a href="https://www.npmjs.com/package/speed-measure-webpack-plugin" target="_blank" rel="noopener">speed-measure-webpack-plugin</a>) 是为<code>webpack</code>量身定做的测速插件，它可以让你知道构建过程的每一步的耗时明细。<code>Speed Measure Plugin</code>需要node 6.0以上，支持所有webpack版本（1 - 4）。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev speed-measure-webpack-plugin</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add -D speed-measure-webpack-plugin</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> SpeedMeasurePlugin = <span class="built_in">require</span>(<span class="string">"speed-measure-webpack-plugin"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> smp = <span class="keyword">new</span> SpeedMeasurePlugin();</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> webpackConfig = smp.wrap(&#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> MyPlugin(),</span><br><span class="line">    <span class="keyword">new</span> MyOtherPlugin()</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h2><p>配置位置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> smp = <span class="keyword">new</span> SpeedMeasurePlugin(options);</span><br></pre></td></tr></table></figure>
+<h3 id="options-disable"><a href="#options-disable" class="headerlink" title="options.disable"></a><code>options.disable</code></h3><p>Type:  <code>Boolean</code></p>
+<p>Default:  <code>false</code></p>
+<p>值设置为<code>true</code>时该插件不工作。</p>
+<h3 id="options-outputFormat"><a href="#options-outputFormat" class="headerlink" title="options.outputFormat"></a><code>options.outputFormat</code></h3><p>Type: <code>String|Function</code></p>
+<p>Default:  <code>human</code></p>
+<p>打印格式，可选值如下：</p>
+<ul>
+<li><code>&quot;json&quot;</code></li>
+<li><code>&quot;human&quot;</code></li>
+<li><code>&quot;humanVerbose&quot;</code></li>
+<li><code>Function</code></li>
+</ul>
+<h3 id="options-outputTarget"><a href="#options-outputTarget" class="headerlink" title="options.outputTarget"></a><code>options.outputTarget</code></h3><p>Type:  <code>String|Function</code><br>Default:  <code>console.log</code></p>
+<h3 id="options-pluginNames"><a href="#options-pluginNames" class="headerlink" title="options.pluginNames"></a><code>options.pluginNames</code></h3><p>Type:  <code>Object</code><br>Default:  <code>{}</code></p>
+<p>默认情况下，SMP使用<code>plugin.constructor.name</code>打印plugin速度，但是如果某些plugin不生效或者你想通过指定字段代理plugin的名称，可以配置该项：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> uglify = <span class="keyword">new</span> UglifyJSPlugin();</span><br><span class="line"><span class="keyword">const</span> smp = <span class="keyword">new</span> SpeedMeasurePlugin(&#123;</span><br><span class="line">  pluginNames: &#123;</span><br><span class="line">    customUglifyName: uglify</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> webpackConfig = smp.wrap(&#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    uglify</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/05/06/webpack优化一：构建测速/" data-id="ck1n687u90001tcu6npo5wql7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-sublime启用vim模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/30/sublime启用vim模式/" class="article-date">
+  <time datetime="2019-04-30T10:33:32.000Z" itemprop="datePublished">2019-04-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/30/sublime启用vim模式/">sublime启用vim模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="sublime-启用vim模式"><a href="#sublime-启用vim模式" class="headerlink" title="sublime 启用vim模式"></a>sublime 启用vim模式</h1><h2 id="什么是vim"><a href="#什么是vim" class="headerlink" title="什么是vim"></a>什么是vim</h2><blockquote>
+<p>Vim是从vi发展出来的一个文本编辑器。其代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。和Emacs并列成为类Unix系统用户最喜欢的编辑器。<br>–维基百科</p>
+</blockquote>
+<hr>
+<h2 id="sublime-启用标准vim模式方法"><a href="#sublime-启用标准vim模式方法" class="headerlink" title="sublime 启用标准vim模式方法"></a>sublime 启用标准vim模式方法</h2><p>sublime默认关闭vim模式，打开方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">菜单中打开：Preferences -&gt; Setting - User</span><br><span class="line">找到&quot;ignored_packages&quot;字段，将数组中的&quot;Vintage&quot;项删除</span><br></pre></td></tr></table></figure>
+<p>现在已经启用了vim模式，可以按“Esc”退出编辑模式，进入vim模式。</p>
+<h2 id="vim模式启用热键更改"><a href="#vim模式启用热键更改" class="headerlink" title="vim模式启用热键更改"></a>vim模式启用热键更改</h2><p>如果你觉得esc启用vim模式不顺手（比如我），可以更改启动热键，方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">菜单中打开：Preferences -&gt; Key Bindings</span><br><span class="line"></span><br><span class="line">不建议更改左侧默认热键，我们可以在右侧user文件内覆盖原配置：</span><br><span class="line">[</span><br><span class="line">    &#123; &quot;keys&quot;: [&quot;j&quot;, &quot;j&quot;], &quot;command&quot;: &quot;exit_insert_mode&quot;,</span><br><span class="line">        &quot;context&quot;:</span><br><span class="line">        [</span><br><span class="line">            &#123; &quot;key&quot;: &quot;setting.command_mode&quot;, &quot;operand&quot;: false &#125;,</span><br><span class="line">            &#123; &quot;key&quot;: &quot;setting.is_widget&quot;, &quot;operand&quot;: false &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">上面的配置会把j+j(两下j)设置为vim的启动热键，这里你可以设置成自己顺手的启动键位。</span><br></pre></td></tr></table></figure>
+<h2 id="常用vim功能键"><a href="#常用vim功能键" class="headerlink" title="常用vim功能键"></a>常用vim功能键</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">j: 下移一行</span><br><span class="line">k: 上移一行</span><br><span class="line">h: 左移一格</span><br><span class="line">l: 右移一格</span><br><span class="line">v: 配合hjkl等跳转键进行选中</span><br><span class="line">a: 在当前字符后进入insert模式</span><br><span class="line">A: 在当前行的结尾处进入insert模式</span><br><span class="line">i: 在当前字符前进入insert模式</span><br><span class="line">o: 向下插入空行并进入insert模式</span><br><span class="line">O: 向上插入空行并进入insert模式</span><br><span class="line">d: 删除选中字符（v）</span><br><span class="line">dd: 删除行</span><br><span class="line">3dd: 删除3行</span><br><span class="line">dgg: 删除文件起始至当前行的内容</span><br><span class="line">dG: 删除当前行至文件结束的内容</span><br><span class="line">x: 删除当前字符</span><br><span class="line">y: 复制</span><br><span class="line">P: 当前字符前粘贴</span><br><span class="line">p: 当前字符后粘贴</span><br><span class="line">gu: 切换为小写</span><br><span class="line">gU: 切换为大写</span><br><span class="line">g~: 大小写转换</span><br><span class="line">&lt;: 向前缩进</span><br><span class="line">&gt;: 向后缩进</span><br><span class="line">b: 回退一个单词</span><br><span class="line">B: 回退到上一个空格</span><br><span class="line">5b: 回退5个字符</span><br><span class="line">w: 向前一个单词</span><br><span class="line">W: 向前到下一个空格</span><br><span class="line">5w: 向前5个字符</span><br><span class="line">G: 跳到文件结尾处</span><br><span class="line">gg: 跳到文件起始处</span><br><span class="line">0: 跳到当前行的起始处</span><br><span class="line">$: 跳到当前行的结尾处</span><br><span class="line">&#123;: 跳转到上一个段落</span><br><span class="line">&#125;: 跳转到下一个段落</span><br></pre></td></tr></table></figure>
+<p>vim还有很多需要记忆的功能键位，以上只是开发中比较常用的一部分，所以学习（记忆）曲线比较陡峭。如果能熟练使用，对于高(tong)效(shi)开(zhuang)发(bi)有很大的帮助。</p>
+<p>以上，感谢阅读。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/04/30/sublime启用vim模式/" data-id="ck1n687u10000tcu6o26qwxyu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime/">sublime</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Webpack-Optimization" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/29/Webpack-Optimization/" class="article-date">
+  <time datetime="2019-04-29T08:50:49.000Z" itemprop="datePublished">2019-04-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/29/Webpack-Optimization/">Webpack Optimization</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Optimization-webpack文档翻译"><a href="#Optimization-webpack文档翻译" class="headerlink" title="Optimization (webpack文档翻译)"></a>Optimization (webpack文档翻译)</h1><p>从webpack4开始，webpack会根据你的<code>mode</code>选项来决定运行哪些优化项，但是所有的优化项仍然可以手动配置及覆盖。</p>
+<h2 id="optimization-minimize"><a href="#optimization-minimize" class="headerlink" title="optimization.minimize"></a><code>optimization.minimize</code></h2><p><code>boolean</code></p>
+<p>是否使用<a href="https://webpack.js.org/plugins/uglifyjs-webpack-plugin/" target="_blank" rel="noopener">UglifyjsWebpackPlugin</a>进行压缩。</p>
+<p>在<code>production</code>模式下默认为<code>true</code>。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimize: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>更多关于<a href="https://webpack.js.org/concepts/mode/" target="_blank" rel="noopener">mode</a></p>
+</blockquote>
+<h2 id="optimization-minimizer"><a href="#optimization-minimizer" class="headerlink" title="optimization.minimizer"></a><code>optimization.minimizer</code></h2><p><code>[UglifyjsWebpackPlugin]</code></p>
+<p>这个选项允许你使用其他的压缩插件，或者覆盖<a href="https://webpack.js.org/plugins/uglifyjs-webpack-plugin/" target="_blank" rel="noopener">UglifyjsWebpackPlugin</a>的默认配置项。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UglifyJsPlugin = <span class="built_in">require</span>(<span class="string">'uglifyjs-webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    minimizer: [</span><br><span class="line">      <span class="keyword">new</span> UglifyJsPlugin(&#123; <span class="comment">/* your config */</span> &#125;)</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-splitChunks"><a href="#optimization-splitChunks" class="headerlink" title="optimization.splitChunks"></a><code>optimization.splitChunks</code></h2><p><code>object</code></p>
+<p>从webpack4开始，我们提供了默认的chunk代码分割插件(CommonsChunkPlugin推出历史舞台)，更多配置信息参考<a href="https://webpack.js.org/plugins/split-chunks-plugin/" target="_blank" rel="noopener">SplitChunksPlugin</a>(翻译文档已上传github)。</p>
+<h2 id="optimization-runtimeChunk"><a href="#optimization-runtimeChunk" class="headerlink" title="optimization.runtimeChunk"></a><code>optimization.runtimeChunk</code></h2><p><code>object</code> <code>string</code> <code>boolean</code></p>
+<p>如果想给<strong>每个entrypoint</strong>添加一个包含runtime代码的额外chunk，我们可以把<code>optimization.runtimeChunk</code>设置为<code>true</code>或者<code>multiple</code>。该值等同于：</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    runtimeChunk: &#123;</span><br><span class="line">      name: <span class="function"><span class="params">entrypoint</span> =&gt;</span> <span class="string">`runtime~<span class="subst">$&#123;entrypoint.name&#125;</span>`</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>single</code> 创建一个runtime文件，这个文件会被所有chunks公用。该值等同于：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    runtimeChunk: &#123;</span><br><span class="line">      name: <span class="string">'runtime'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果我们把<code>optimization.runtimeChunk</code>设置为<code>object</code>，该对象仅支持<code>name</code>值作为打包生成的runtime代码块的name。</p>
+<p>默认为<code>false</code>：runtime打包进各个entry chunk。</p>
+<blockquote>
+<p>引入的模块代码将分别在每个chunk运行时初始化，因此如果在页面上包含多个entry point，请注意此行为。这种情况下，你可能希望设置<code>single</code>项，或者使用其他配置项，使runtime代码分割为同一个公用chunk。</p>
+</blockquote>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    runtimeChunk: &#123;</span><br><span class="line">      name: <span class="function"><span class="params">entrypoint</span> =&gt;</span> <span class="string">`runtimechunk~<span class="subst">$&#123;entrypoint.name&#125;</span>`</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-noEmitOnErrors"><a href="#optimization-noEmitOnErrors" class="headerlink" title="optimization.noEmitOnErrors"></a><code>optimization.noEmitOnErrors</code></h2><p><code>boolean</code></p>
+<p><code>optimization.noEmitOnErrors</code>会在编译发生错误时跳过输出。该选项可以确保错误的资源不被打包进chunk，并且在打印信息中不再包含错误信息。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    noEmitOnErrors: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果你使用webpack CLI进行开发，webpack不会再遇到错误代码时结束进程。如果你希望webpack CLI在编译遇到错误时不退出，请检查CLI的<a href="https://webpack.js.org/api/cli/#advanced-options" target="_blank" rel="noopener"><code>bail</code> option</a>。</p>
+</blockquote>
+<h2 id="optimization-namedModules"><a href="#optimization-namedModules" class="headerlink" title="optimization.namedModules"></a><code>optimization.namedModules</code></h2><p><code>boolean: false</code></p>
+<p>为了方便调试，使用更易读的模块ids。该配置项可以在<code>development</code>模式下使用（默认），不可以在<code>production</code>模式下使用。</p>
+<p><strong>webpack.config.js</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    namedChunks: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="optimization-moduleIds"><a href="#optimization-moduleIds" class="headerlink" title="optimization.moduleIds"></a>optimization.moduleIds</h2><p><code>bool:false</code> <code>string: natural, named, hashed, size, total-size</code></p>
+<p>该配置项可以指定使用某一种算法来生成模块ids。如果设置<code>optimization.moduleIds</code>为<code>false</code>，则webpack在生成ids时不使用任何一种算法，这一项可以用其他plugin来替代。</p>
+<p>默认为<code>false</code>。</p>
+<p>支持以下值：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Option</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>natural</code></td>
+<td style="text-align:left">数字下标</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>named</code></td>
+<td style="text-align:left">方便调试的高可读性ids</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>hashed</code></td>
+<td style="text-align:left">短hash ids，长期缓存表现更好</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>size</code></td>
+<td style="text-align:left">根据请求到的初始资源size计算的ids</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>total-size</code></td>
+<td style="text-align:left">根据请求到的解析资源size计算的ids</td>
+</tr>
+</tbody>
+</table>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    moduleIds: <span class="string">'hashed'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-nodeEnv"><a href="#optimization-nodeEnv" class="headerlink" title="optimization.nodeEnv"></a><code>optimization.nodeEnv</code></h2><p><code>string</code> <code>bool: false</code></p>
+<p>给定一个<code>process.env.NODE_ENV</code>值。<code>optimization.nodeEnv</code>会使用<a href="https://webpack.js.org/plugins/define-plugin/" target="_blank" rel="noopener">DefinePlugin</a>，除非设置值为<code>false</code>。<code>optimization.nodeEnv</code>的<strong>默认值</strong>为mode的值，如果没有设置的话，默认为<code>production</code>。</p>
+<p>可以设置的值：</p>
+<ul>
+<li>任意字符串</li>
+<li>false: 不修改<code>process.env.NODE_ENV</code>的值</li>
+</ul>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    nodeEnv: <span class="string">'production'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-mangleWasmImports"><a href="#optimization-mangleWasmImports" class="headerlink" title="optimization.mangleWasmImports"></a><code>optimization.mangleWasmImports</code></h2><p><code>bool: false</code></p>
+<p>如果设置为<code>true</code>，webpack会通过把引入资源转换为更短的字符串的方式，减少WASM的大小。它会打乱module并输出names。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    mangleWasmImports: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-removeAvailableModules"><a href="#optimization-removeAvailableModules" class="headerlink" title="optimization.removeAvailableModules"></a><code>optimization.removeAvailableModules</code></h2><p><code>bool: true</code></p>
+<p>该配置项会检测modules是否已经被父级chunk打包过，如果已经被打包过，则会在该chunk中删除该modules。设置为<code>false</code>来阻止该优化。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    removeAvailableModules: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-removeEmptyChunks"><a href="#optimization-removeEmptyChunks" class="headerlink" title="optimization.removeEmptyChunks"></a><code>optimization.removeEmptyChunks</code></h2><p><code>bool: true</code></p>
+<p>该配置项会检测并删除空的chunks。设置为<code>false</code>来阻止该优化。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    removeEmptyChunks: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-mergeDuplicateChunks"><a href="#optimization-mergeDuplicateChunks" class="headerlink" title="optimization.mergeDuplicateChunks"></a><code>optimization.mergeDuplicateChunks</code></h2><p><code>bool: true</code></p>
+<p>该配置项会合并包含相同modiles的trunks。设置为<code>false</code>来阻止该优化。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    mergeDuplicateChunks: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-flagIncludedChunks"><a href="#optimization-flagIncludedChunks" class="headerlink" title="optimization.flagIncludedChunks"></a><code>optimization.flagIncludedChunks</code></h2><p><code>bool</code></p>
+<p>该配置项会使webpack确认当前标记的chunk是另外一个chunk的子集并且已经加载完成时，当前标记的chunk将不会再次加载（包含关系）。默认并且仅允许生产环境使用。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    flagIncludedChunks: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-occurrenceOrder"><a href="#optimization-occurrenceOrder" class="headerlink" title="optimization.occurrenceOrder"></a><code>optimization.occurrenceOrder</code></h2><p><code>bool</code></p>
+<p>使webpack可以按照顺序排列模块，从而可以得到最小的初始包。生产环境默认为true，其他环境下为false。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    occurrenceOrder: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-providedExports"><a href="#optimization-providedExports" class="headerlink" title="optimization.providedExports"></a><code>optimization.providedExports</code></h2><p><code>bool</code></p>
+<p>使webpack可以高效的导出来自<code>export * from ...</code>的代码。默认开启。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    providedExports: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-usedExports"><a href="#optimization-usedExports" class="headerlink" title="optimization.usedExports"></a><code>optimization.usedExports</code></h2><p><code>bool</code></p>
+<p>使webpack确定每个模块导出项（exports）的使用情况。依赖于<code>optimization.providedExports</code>的配置。<code>optimization.usedExports</code>收集到的信息会被其他优化项或产出代码使用到（模块未用到的导出项不会被导出，在语法完全兼容的情况下会把导出名称混淆为单个char）。为了最小化代码体积，未用到的的导出项目（exports）会被删除。生产环境默认开启。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    usedExports: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-concatenateModules"><a href="#optimization-concatenateModules" class="headerlink" title="optimization.concatenateModules"></a><code>optimization.concatenateModules</code></h2><p><code>bool</code></p>
+<p>使webpack可以把代码片段安全的合并为一个模块。依赖于<code>optimization.providedExports</code>和<code>optimization.usedExports</code>。生产环境默认开启。</p>
+<p><strong>webpack.comfig.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    concatenateModules: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-sideEffects"><a href="#optimization-sideEffects" class="headerlink" title="optimization.sideEffects"></a><code>optimization.sideEffects</code></h2><p><code>bool</code></p>
+<p>使webpack可以识别<code>package.json</code>中的<code>sideEffects</code>项。可以删除多余的导出项（如<code>import {a} from &#39;module&#39;</code>，只会打包<code>&#39;module/lib/a&#39;</code>，而不会把整个’module’打包进去）。</p>
+<p><strong>package.json</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"awesome npm module"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"sideEffects"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，<code>sideEffects</code>应该在<code>package.json</code>中，但并不意味着你需要在你的项目中把它设置为false（可能你的项目会需要用到某一个大的依赖）。</p>
+</blockquote>
+<p><code>optimization.sideEffects</code>依赖于<code>optimization.providedExports</code>。这会产生额外的构建时间，但是总体来说还是有更好的表现，因为代码量会大大减少。该优化项的优化效果取决于你的项目的第三方依赖情况。</p>
+<p>生产环境默认开启。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    sideEffects: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="optimization-portableRecords"><a href="#optimization-portableRecords" class="headerlink" title="optimization.portableRecords"></a><code>optimization.portableRecords</code></h2><p><code>bool</code></p>
+<p>该优化项会使webpack生成依赖项的相对路径。</p>
+<p>默认关闭。如果<a href="https://webpack.js.org/configuration/other-options/#recordspath" target="_blank" rel="noopener">recordsPath</a>，<a href="https://webpack.js.org/configuration/other-options/#recordsinputpath" target="_blank" rel="noopener">recordsInputPath</a>，<a href="https://webpack.js.org/configuration/other-options/#recordsoutputpath" target="_blank" rel="noopener">recordsOutputPath</a>中至少一项被配置，则开启。</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  optimization: &#123;</span><br><span class="line">    portableRecords: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/04/29/Webpack-Optimization/" data-id="ck1n687uw000jtcu6sdqvsgjr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-从零开始搭建多入口webpack4项目" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/29/从零开始搭建多入口webpack4项目/" class="article-date">
+  <time datetime="2019-04-29T07:23:56.000Z" itemprop="datePublished">2019-04-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/29/从零开始搭建多入口webpack4项目/">从零开始搭建多入口webpack4项目</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>搭建基础项目架构</li>
+<li>开发中（dev-server）</li>
+<li>模块（module）配置</li>
+<li>生产环境的资源打包</li>
+</ul>
+<h1 id="搭建基础项目架构"><a href="#搭建基础项目架构" class="headerlink" title="搭建基础项目架构"></a>搭建基础项目架构</h1><p>首先，webpack4对于<code>Node.js</code>版本是有要求的：</p>
+<blockquote>
+<p>webpack4要求Node.js的最低版本为<code>6.11.5</code>  </p>
+</blockquote>
+<p>如果你的Node.js版本过低并进行了升级，然后在项目运行时出现了茫茫多的关于<code>node-sass</code>的报错，则需要重建node-sass环境。运行指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm rebuild node-sass</span><br></pre></td></tr></table></figure>
+<hr>
+<p>创建一个多入口项目，按照我们的现有项目，目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">└ your-project</span><br><span class="line">  ├ src</span><br><span class="line">    ├ css</span><br><span class="line">    ├ js</span><br><span class="line">      ├ project1</span><br><span class="line">        ├ detail.js</span><br><span class="line">        └ index.js</span><br><span class="line">      └ project2</span><br><span class="line">        └ index.js</span><br><span class="line">    └ tpl</span><br><span class="line">      ├ project1</span><br><span class="line">        ├ detail.ejs</span><br><span class="line">        └ index.ejs</span><br><span class="line">      └ project2</span><br><span class="line">        └ index.ejs</span><br><span class="line">  ├ webpack.config.js</span><br><span class="line">  ├ webpack.production.config.js</span><br><span class="line">  └ package.json</span><br></pre></td></tr></table></figure>
+<p>安装<code>webpack</code>和<code>webpack-cli</code>（webpack4需要配合webpack-cli使用，社区也有相关的绕过cli的解决方案，但不是很推荐）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i webpack webpack-cli -D</span><br></pre></td></tr></table></figure>
+<p>新建默认配置入口<code>webpack.config.js</code>，虽然能看到webpack4在往0配置的方向发展，但是在大多数项目中的配置三板斧还是不能少的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        <span class="comment">// webpack4默认src/index.js为入口文件</span></span><br><span class="line">        <span class="comment">// 本次针对多入口项目做配置，第二节会去做入口文件的获取</span></span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        <span class="comment">// 文件输出默认为dist/bundle.js</span></span><br><span class="line">        <span class="comment">// 第二节会去重新覆盖默认的输出项</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            <span class="comment">// module.rules在大多数情况仍然需要配置</span></span><br><span class="line">            <span class="comment">// 我们需要合适的loader去解析对应的文件格式（*.css, *.ejs, ...）</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    mode: <span class="string">'development'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>mode</code>为webpack4新增配置，默认值为<code>production</code>，根据字面意思可以猜到分别对应开发环境和生产环境，设置的模式会有对应的内部配置。该参数可以在cli中追加，也可以在config中配置（如上）。该参数在webpck4中为必需参数。</p>
+</blockquote>
+<blockquote>
+<p>具体可以参考<a href="https://webpack.docschina.org/concepts/mode/" target="_blank" rel="noopener"><strong>模式(mode)</strong></a>。</p>
+</blockquote>
+<h1 id="开发中（dev-server）"><a href="#开发中（dev-server）" class="headerlink" title="开发中（dev-server）"></a>开发中（dev-server）</h1><p>webpack4的开发环境搭建有两个推荐：<code>webpack-dev-server</code>（node + express）和<code>webpack-serve</code>（node + koa2）。</p>
+<p>如果要沿用我们比较熟悉的<code>webpack-dev-server</code>（<a href="https://github.com/webpack/webpack-dev-server" target="_blank" rel="noopener">传送门</a>）进行开发环境的搭建，需要安装对应的beta版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i webpack-dev-server@next -D</span><br></pre></td></tr></table></figure>
+<p>而<code>webpack-serve</code>（<a href="https://github.com/webpack-contrib/webpack-serve" target="_blank" rel="noopener">传送门</a>）作为升级版本，功能更加强大（<strong>也许也会有更多的坑，待踩</strong>），使用<code>WebSockets</code>做HMR(Hot Module Replacement 模块热替换)。这次我们就来体验一下<code>webpack-serve</code>，安装依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i webpack-serve -D</span><br></pre></td></tr></table></figure>
+<p>新建<code>serve.config.js</code>，安装依赖项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i glob yargs koa-router -D</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>警告！</strong>如果需要用cli命令启用服务的话，必需使用<strong>CommonJS</strong>规范语法。以下实例因为未使用CommonJS规范的原因只能使用node语法启动，因为我<strong>懒得改了</strong>。</p>
+</blockquote>
+<p>配置我们需要的配置项，然后为了便利考虑在根路由搭建目录列表：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// serve.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="comment">// glob用更方便的规则匹配需要的文件</span></span><br><span class="line"><span class="comment">// 参考地址 https://github.com/isaacs/node-glob</span></span><br><span class="line"><span class="keyword">const</span> glob = <span class="built_in">require</span>(<span class="string">'glob'</span>);</span><br><span class="line"><span class="keyword">const</span> serve = <span class="built_in">require</span>(<span class="string">'webpack-serve'</span>);</span><br><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>); <span class="comment">// 引入koa-router，配置根路由的展示内容</span></span><br><span class="line"><span class="keyword">const</span> WebpackConfig = <span class="built_in">require</span>(<span class="string">'./webpack.config.js'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更多配置项参考 https://github.com/webpack-contrib/webpack-serve</span></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    open: <span class="literal">true</span> <span class="comment">// 构建完成后是否自动在浏览器打开</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新建路由，输出目录结构</span></span><br><span class="line"><span class="keyword">let</span> directory = <span class="keyword">new</span> Router();</span><br><span class="line">directory.get(<span class="string">'/'</span>, <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="comment">// 拼接根路由的html DOM结构</span></span><br><span class="line">    <span class="keyword">let</span> html = <span class="string">`&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;&lt;ul&gt;`</span>;</span><br><span class="line">    <span class="comment">// 获取webpack入口文件，遍历生成目录结构</span></span><br><span class="line">    <span class="keyword">let</span> entries = WebpackConfig.entry;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> entries) &#123;</span><br><span class="line">        <span class="keyword">if</span> (key !== <span class="string">'commons'</span>) &#123;</span><br><span class="line">            html += <span class="string">`&lt;li&gt;&lt;a href="/pages/<span class="subst">$&#123;key&#125;</span>.html"&gt;<span class="subst">$&#123;key&#125;</span>&lt;/a&gt;&lt;/li&gt;`</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    html += <span class="string">`&lt;/ul&gt;`</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输出html结构</span></span><br><span class="line">    ctx.body = html;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 装载子路由</span></span><br><span class="line"><span class="keyword">let</span> router = <span class="keyword">new</span> Router();</span><br><span class="line">router.use(<span class="string">'/'</span>, directory.routes(), directory.allowedMethods());</span><br><span class="line"></span><br><span class="line">serve(config, &#123;</span><br><span class="line">    WebpackConfig,</span><br><span class="line">    add: <span class="function">(<span class="params">app, middleware</span>) =&gt;</span> &#123;</span><br><span class="line">        middleware.webpack();</span><br><span class="line">        middleware.content();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 加载路由中间件，路由**必需**作为最后一个中间件添加</span></span><br><span class="line">        app.use(router.routes());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">.then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// to do ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<hr>
+<p>在目录页的搭建时用到了webpack配置中的<code>entry</code>项（入口文件），接下来我们需要在<code>webpack.config.js</code>中获取我们项目的所有入口文件，并指定输出规则（<code>output</code>）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// path参考 http://nodejs.cn/api/path.html</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> glob = <span class="built_in">require</span>(<span class="string">'glob'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> SRC_PATH = path.resolve(__dirname, <span class="string">'./src'</span>);</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多入口项目获取入口对象</span></span><br><span class="line"><span class="keyword">let</span> entries = (<span class="function"><span class="params">entryPath</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> files = &#123;&#125;,</span><br><span class="line">        filesPath;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 传入的entryPath为src/js文件夹路径</span></span><br><span class="line">    <span class="comment">// 如果有不需要作为入口js获取的文件／文件夹，在options项添加ignore配置来进行筛除</span></span><br><span class="line">    filesPath = glob.sync(entryPath + <span class="string">'/**/*.js'</span>, &#123;</span><br><span class="line">        <span class="comment">// options ...  </span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    filesPath.forEach(<span class="function">(<span class="params">entry, index</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 获取并简化入口文件对象的键名</span></span><br><span class="line">        <span class="keyword">let</span> chunkName = path.relative(entryPath, entry).replace(<span class="regexp">/\.js$/i</span>, <span class="string">''</span>);</span><br><span class="line"></span><br><span class="line">        files[chunkName] = entry;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回多入口文件对象</span></span><br><span class="line">    <span class="keyword">return</span> files;</span><br><span class="line">&#125;)(path.join(SRC_PATH, <span class="string">'js'</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    entry: entries,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">        filename: <span class="string">'js/[name].[hash:7].js'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>在<code>package.json</code>中写入启动脚本（<strong>再次友情提示！建议使用CommonJS规范书写<code>serve.config.js</code>，以便使用推荐的cli命令！</strong>）：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">        <span class="attr">"dev"</span>: <span class="string">"node ./serve.config.js"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="模块（module）配置"><a href="#模块（module）配置" class="headerlink" title="模块（module）配置"></a>模块（module）配置</h1><blockquote>
+<p>webpack4依然不支持把<code>css</code>和<code>html</code>作为模块，相关格式的loader配置仍然是必需项。<br>根据社区的开发计划，webpack5也许会解决这个问题（把<code>css</code>和<code>html</code>视作模块读取）。</p>
+</blockquote>
+<h2 id="处理scss-css文件"><a href="#处理scss-css文件" class="headerlink" title="处理scss/css文件"></a>处理scss/css文件</h2><p>在webpack4之前我们都是用<code>extract-text-webpack-plugin</code>(<a href="https://github.com/webpack-contrib/extract-text-webpack-plugin" target="_blank" rel="noopener">传送门</a>)来抽离已经被<code>sass-loader</code>、<code>css-loader</code>解析完成的css为<strong>独立的外部css文件</strong>，它的beta版本也对webpack4做了支持，但是仅支持<code>4.2.0</code>以下版本，因此我们应尽量选择版本向上兼容度更好的其他依赖。</p>
+<p><strong>解决方案：</strong>使用官方新推荐的<code>mini-css-extract-plugin</code>(<a href="https://github.com/webpack-contrib/mini-css-extract-plugin" target="_blank" rel="noopener">传送门</a>)作替代。</p>
+<p><strong>注意：</strong>loader的解析顺序为从后往前，顺序混乱可能会引起一些报错。</p>
+<p>安装依赖项目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm i mini-css-extract-plugin css-loader postcss-loader node-sass sass-loader -D</span><br><span class="line">cnpm i autoprefixer -D</span><br></pre></td></tr></table></figure>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>);</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 如果不希望把已经解析完成的css文件单独抽离引入，而是希望以style标签对的形式插入页面</span></span><br><span class="line">                <span class="comment">// 可以把MiniCssExtractPlugin.loader替换为style-loader</span></span><br><span class="line">                test: <span class="regexp">/\.(c|sa|sc)ss$/</span>,</span><br><span class="line">                use: [</span><br><span class="line">                    MiniCssExtractPlugin.loader,</span><br><span class="line">                    <span class="string">'css-loader'</span>,</span><br><span class="line">                    &#123;</span><br><span class="line">                        loader: <span class="string">'postcss-loader'</span>,</span><br><span class="line">                        options: &#123;</span><br><span class="line">                            plugins: <span class="function"><span class="params">()</span> =&gt;</span> [</span><br><span class="line">                                <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>)(&#123;</span><br><span class="line">                                    <span class="string">'browsers'</span>: [<span class="string">'&gt; 1%'</span>, <span class="string">'last 10 versions'</span>]</span><br><span class="line">                                &#125;)</span><br><span class="line">                            ]</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    <span class="string">'sass-loader'</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            ...</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="comment">// 指定抽离出的css文件的输出规则</span></span><br><span class="line">        <span class="comment">// 如果使用style-loader，不需要以下配置</span></span><br><span class="line">        <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">            filename: <span class="string">'css/[name].[hash:7].css'</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>module模块不再支持loader配置项，需要使用use项做升级</p>
+</blockquote>
+<h2 id="ejs模版语言处理"><a href="#ejs模版语言处理" class="headerlink" title="ejs模版语言处理"></a>ejs模版语言处理</h2><p>正常情况下，使用我们之前的<code>ejs-compiled-loader</code>仍然可以正常解析ejs模版，但是在一些未知的条件下会出现this指针相关的报错（如pc_v1项目）。目前没有找到合适的替代依赖。</p>
+<p><strong>解决方案：</strong>根据热心网友提供的PR，可以暂时使用<code>ejs-zdm-loader</code>做应急策略。</p>
+<p>安装依赖项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i ejs-zdm-loader -D</span><br></pre></td></tr></table></figure>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        ...</span><br><span class="line">        &#123;</span><br><span class="line">            test: <span class="regexp">/\.ejs$/i</span>,</span><br><span class="line">            use: <span class="string">'ejs-zdm-loader'</span></span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="js公共模块抽离"><a href="#js公共模块抽离" class="headerlink" title="js公共模块抽离"></a>js公共模块抽离</h2><p>在webpack4之前，对于公共依赖的抽离使用的是<code>CommonsChunkPlugin</code>，webpack4对于该插件已经做了<strong>废弃处理</strong>，相对的，提供了更便捷的<a href="https://webpack.docschina.org/plugins/split-chunks-plugin/" target="_blank" rel="noopener">SplitChunksPlugin</a>作为新的解决方案。相关api在官方文档可以查看。</p>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    optimization: &#123;</span><br><span class="line">        splitChunks: &#123;</span><br><span class="line">            chunks: <span class="string">'all'</span>,</span><br><span class="line">            minChunks: <span class="number">1</span>,</span><br><span class="line">            name: <span class="literal">true</span>,</span><br><span class="line">            cacheGroups: &#123;</span><br><span class="line">                commons: &#123;</span><br><span class="line">                    name: <span class="string">'commons'</span>,</span><br><span class="line">                    minChunks: <span class="number">2</span>,</span><br><span class="line">                    <span class="comment">// minSize设置为0只为demo体现抽离效果，建议保持默认的30000</span></span><br><span class="line">                    <span class="comment">// 该设置过小会可能导致网络请求无必要的增加一次</span></span><br><span class="line">                    minSize: <span class="number">0</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="其他plugins"><a href="#其他plugins" class="headerlink" title="其他plugins"></a>其他plugins</h2><p>到目前为止我们已经做了入口文件的获取，各种文件格式的解析抽离，并指定了输出规则，但是并没有实际的输出html文件。</p>
+<p>仍然使用<code>html-webpack-plugin</code>，升级到支持webpack4的最新版本。</p>
+<p>安装依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i html-webpack-plugin -D</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong><code>html-webpack-plugin</code>每次只能生成一个.html文件，所以在多入口项目中需要对入口文件进行遍历。</p>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    plugins: [</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// 把$变量暴露到全局</span></span><br><span class="line">        <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">            $: <span class="string">'jquery'</span>,</span><br><span class="line">            jQuery: <span class="string">'jquery'</span>,</span><br><span class="line">            <span class="string">'window.jQuery'</span>: <span class="string">'jquery'</span></span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> pages = <span class="built_in">Object</span>.keys(entries);</span><br><span class="line">pages.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    config.plugins.push(<span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">        showErrors: <span class="literal">false</span>,</span><br><span class="line">        filename: path.join(__dirname, <span class="string">`/dist/pages/<span class="subst">$&#123;item&#125;</span>.html`</span>),</span><br><span class="line">        template: path.join(__dirname, <span class="string">`/src/tpl/<span class="subst">$&#123;item&#125;</span>.ejs`</span>),</span><br><span class="line">        chunks: [<span class="string">'commons'</span>, item]</span><br><span class="line">    &#125;)); </span><br><span class="line">&#125;);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>到目前为止，我们已经完成了开发环境的所有配置，可以使用<code>npm run dev</code>来看看项目是否已经正常启动。完整配置可以参考<strong><a href="https://github.com/hinapudao/webpack4/blob/master/webpack.config.js" target="_blank" rel="noopener">这里</a></strong>。</p>
+</blockquote>
+<h1 id="生产环境的资源打包"><a href="#生产环境的资源打包" class="headerlink" title="生产环境的资源打包"></a>生产环境的资源打包</h1><p>万里长征最后一步，配置生产环境，压缩静态资源，用chunk hash代替编译hash。</p>
+<blockquote>
+<p>chunk hash可以根据文件内容生成hash，在文件内容无更改时不会生成新hash。而编译hash会在每次项目编译的时候重新生成，所以不建议使用在生产环境。</p>
+</blockquote>
+<p>为了方便书写，免去变量区分，我们新建一个<code>webpack.production.config.js</code>来配置生产环境。在webpack4下，我们不再需要<code>UglifyJsPlugin</code>来压缩js代码，只需要配置<a href="https://webpack.docschina.org/concepts/mode/" target="_blank" rel="noopener"><strong>模式(mode)</strong></a>为<code>production</code>即可。</p>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.production.config.js</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    mode: <span class="string">'production'</span>,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于静态资源的编译顺序为<strong>js依赖编译</strong> &gt; <strong>编译css</strong> &gt; <strong>抽离css资源为单独文件</strong> &gt; <strong>编译并压缩js</strong>，所以以上配置并不会压缩css文件，所以我们需要单独处理一下生产环境的css资源。</p>
+</blockquote>
+<p>webpack4下我们尝试使用<a href="https://github.com/NMFR/optimize-css-assets-webpack-plugin" target="_blank" rel="noopener">optimize-css-assets-webpack-plugin</a>来压缩css文件。</p>
+<p>首先安装依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i optimize-css-assets-webpack-plugin -D</span><br></pre></td></tr></table></figure>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.production.config.js</span></span><br><span class="line"><span class="keyword">const</span> OptimizeCSSAssetsPlugin = <span class="built_in">require</span>(<span class="string">'optimize-css-assets-webpack-plugin'</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    optimization: &#123;</span><br><span class="line">        minimizer: [</span><br><span class="line">            <span class="keyword">new</span> OptimizeCSSAssetsPlugin(&#123;</span><br><span class="line">                cssProcessorOptions: &#123;</span><br><span class="line">                    <span class="comment">// postcss-loader解析css过程中已经添加了autoprefixer兼容</span></span><br><span class="line">                    <span class="comment">// 此处需要设置为false</span></span><br><span class="line">                    autoprefixer: <span class="literal">false</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>最后，我们需要用chunk hash代替编译hash。</p>
+<p>配置如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.production.config.js</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    ...</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">'./dist'</span>),</span><br><span class="line">        filename: <span class="string">'js/[name].[chunkhash:7].js'</span>,</span><br><span class="line">        publicPath: <span class="string">'./'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">            filename: <span class="string">'css/[name].[contenthash:7].css'</span></span><br><span class="line">        &#125;),</span><br><span class="line">        ...</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>添加webpack打包命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;scripts&quot;: &#123;</span><br><span class="line">        &quot;dev&quot;: &quot;node ./serve.config.js&quot;,</span><br><span class="line">        &quot;build&quot;: &quot;rm -rf dist &amp;&amp; npx webpack --config webpack.production.config.js&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>完整的生产环境配置可以参考<a href="https://github.com/hinapudao/webpack4/blob/master/webpack.production.config.js" target="_blank" rel="noopener">这里</a>。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/04/29/从零开始搭建多入口webpack4项目/" data-id="ck1n687uy000ltcu6y9qhoq1l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活随笔/">生活随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nuxt-js/">Nuxt.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Nuxt-js/" style="font-size: 10px;">Nuxt.js</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/12/Nuxt-js-开发及部署/">Nuxt.js 开发及部署</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/时隔几个月的一篇唠叨/">时隔几个月的一篇唠叨</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/22/webpack优化二：打包分析/">webpack优化二：打包分析</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/webpack优化一：构建测速/">webpack优化一：构建测速</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/30/sublime启用vim模式/">sublime启用vim模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 葛潇林 hina_ge#163.com<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/canvas-nest.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

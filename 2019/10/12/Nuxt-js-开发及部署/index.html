@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Nuxt.js 开发及部署 | 葛潇林</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Nuxt.js 是什么Nuxt.js 是一个基于 Vue.js 的通用应用框架，预设了利用 Vue.js 开发服务端渲染的应用所需要的各种配置，提供异步数据加载、中间件、布局支持等。 与传统的 csr (client-side-render) 相比，Nuxt.js封装的 ssr (server-side-render) 解决方案可以更好的支持 seo ，且白屏时间可减少大约 50% ，极大的提升用">
+<meta name="keywords" content="Nuxt.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nuxt.js 开发及部署">
+<meta property="og:url" content="http://hinapudao.github.io/2019/10/12/Nuxt-js-开发及部署/index.html">
+<meta property="og:site_name" content="葛潇林">
+<meta property="og:description" content="Nuxt.js 是什么Nuxt.js 是一个基于 Vue.js 的通用应用框架，预设了利用 Vue.js 开发服务端渲染的应用所需要的各种配置，提供异步数据加载、中间件、布局支持等。 与传统的 csr (client-side-render) 相比，Nuxt.js封装的 ssr (server-side-render) 解决方案可以更好的支持 seo ，且白屏时间可减少大约 50% ，极大的提升用">
+<meta property="og:locale" content="中文">
+<meta property="og:updated_time" content="2019-10-12T06:22:07.261Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nuxt.js 开发及部署">
+<meta name="twitter:description" content="Nuxt.js 是什么Nuxt.js 是一个基于 Vue.js 的通用应用框架，预设了利用 Vue.js 开发服务端渲染的应用所需要的各种配置，提供异步数据加载、中间件、布局支持等。 与传统的 csr (client-side-render) 相比，Nuxt.js封装的 ssr (server-side-render) 解决方案可以更好的支持 seo ，且白屏时间可减少大约 50% ，极大的提升用">
+  
+    <link rel="alternate" href="/atom.xml" title="葛潇林" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">葛潇林</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">我变秃了，也变强了</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://hinapudao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer" id="article">
+        <section id="main"><article id="post-Nuxt-js-开发及部署" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/12/Nuxt-js-开发及部署/" class="article-date">
+  <time datetime="2019-10-12T06:20:04.000Z" itemprop="datePublished">2019-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Nuxt.js 开发及部署
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Nuxt-js-是什么"><a href="#Nuxt-js-是什么" class="headerlink" title="Nuxt.js 是什么"></a>Nuxt.js 是什么</h2><p>Nuxt.js 是一个基于 Vue.js 的通用应用框架，预设了利用 Vue.js 开发服务端渲染的应用所需要的各种配置，提供异步数据加载、中间件、布局支持等。</p>
+<p>与传统的 <code>csr</code> (client-side-render) 相比，Nuxt.js封装的 <code>ssr</code> (server-side-render) 解决方案可以更好的支持 seo ，且白屏时间可减少大约 50% ，极大的提升用户的访问体验。</p>
+<h2 id="项目目录结构"><a href="#项目目录结构" class="headerlink" title="项目目录结构"></a>项目目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">·</span><br><span class="line">├── README.md</span><br><span class="line">├── nuxt.config.js             # nuxt配置，文档地址：https://zh.nuxtjs.org/guide/configuration</span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json</span><br><span class="line">├── server                     # express服务</span><br><span class="line">└── src                        # 开发目录</span><br><span class="line">    ├── app.html               # html模版</span><br><span class="line">    ├── assets                 # 公共资源</span><br><span class="line">    ├── components             # 页面开发子组件</span><br><span class="line">    ├── layouts                # 组件布局(https://zh.nuxtjs.org/guide/views#%E5%B8%83%E5%B1%80)</span><br><span class="line">    │   ├── default.vue        # 默认模版</span><br><span class="line">    │   └── error.vue          # 错误页面模版</span><br><span class="line">    ├── middleware             # 中间件(https://zh.nuxtjs.org/guide/routing#%E4%B8%AD%E9%97%B4%E4%BB%B6)</span><br><span class="line">    ├── pages                  # 页面开发主文件夹</span><br><span class="line">    ├── plugins                # 自定义插件(https://zh.nuxtjs.org/guide/plugins)</span><br><span class="line">    ├── static                 # 静态资源，根路由&apos;/&apos;指向该文件夹</span><br><span class="line">    └── store                  # vuex</span><br></pre></td></tr></table></figure>
+<p>为了符合前端开发习惯，我们把通过 Nuxt.js cli 构建的目录结构做了一些微小的调整：前端相关开发内容放入了 <code>src</code> 文件夹，同时把 nuxt config 的开发默认路径改为 src 下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// next.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  srcDir: <span class="string">'src/'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="本地开发"><a href="#本地开发" class="headerlink" title="本地开发"></a>本地开发</h2><blockquote>
+<p>注意，在 <code>Vue</code> 组件的生命周期中，<code>beforeCreate</code> 和 <code>created</code> 会在 <strong>客户端和服务端调用</strong>，其他生命周期仅在客户端调用。</p>
+</blockquote>
+<h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><p>默认 host 为 <code>localhost</code> , 端口号为 <code>3000</code> ，可在 <code>nuxt.config.js</code> 中覆盖默认配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  server: &#123;</span><br><span class="line">    port: <span class="number">8080</span>,</span><br><span class="line">    host: process.env.NODE_ENV === <span class="string">'production'</span> ? <span class="string">'0.0.0.0'</span> : <span class="string">'local.xxx.com'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果需要扩展/添加 express 中间件，可以修改 <code>server/index.js</code> ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myMiddleWare = <span class="built_in">require</span>(<span class="string">'myMiddleWare'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line">app.use(myMiddleWare);</span><br></pre></td></tr></table></figure>
+<h3 id="layouts"><a href="#layouts" class="headerlink" title="layouts"></a>layouts</h3><p><code>src/layouts</code> 文件夹存放默认及自定义布局模版，<code>default.vue</code> 为默认通用模版，<code>error.vue</code>  为错误页面模版（接收上下文 <code>error</code> 对象）。</p>
+<p>我们也可以自定义布局模版，通过 <code>&lt;nuxt/&gt;</code> 标签获取开发组件内容。比如我们新增 <code>layouts/example.vue</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div&gt;example header&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;nuxt/</span>&gt;</span><br><span class="line">    &lt;div&gt;example footer&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在开发组件中使用自定义布局模版：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;!-- 开发组件内容 --&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  layout: 'example' /</span><span class="regexp">/ 指定渲染的布局模版</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="error"><a href="#error" class="headerlink" title="error"></a>error</h3><p>我们可以通过编辑 <code>layouts/error.vue</code> 文件来定制自己的错误页面。</p>
+<blockquote>
+<p>虽然此文件放在 layouts 文件夹中, 但应该将它看作是一个 页面(page)。</p>
+</blockquote>
+<p><code>error.vue</code> 接收上下文的 <code>error</code> 对象，改对象参数应该包含两个字段，分别为 <code>statusCode</code> （错误码）及 <code>message</code> （错误信息）:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span>&gt;</span><br><span class="line">    &lt;h1 v-<span class="keyword">if</span>=<span class="string">"error.statusCode === 404"</span>&gt;页面不存在&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;h1 v-else&gt;应用发生错误异常：&#123;&#123;error.message&#125;&#125;&lt;/</span>h1&gt;</span><br><span class="line">    &lt;nuxt-link to=<span class="string">"/"</span>&gt;首 页&lt;<span class="regexp">/nuxt-link&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="router"><a href="#router" class="headerlink" title="router"></a>router</h3><p>项目支持常用的 <code>vue router</code> 路由跳转，使用方式也很简单，只需要使用 <code>&lt;nuxt-link to=&quot;&quot;&gt;&lt;/nuxt-link&gt;</code> 标签代理 <code>a</code> 标签，<code>to</code> 属性内应放置项目结构内已有的相对路由。</p>
+<p>同样的，我们也可以在不希望以 <code>vue router</code> 方式跳转的地方使用 <code>a</code> 标签。</p>
+<h3 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h3><p>插件放置在 <code>src/plugin/</code> 目录，会在 Vue 应用程序之前执行，接收 <code>context</code> 上下文作为第一个参数。</p>
+<p>插件的执行环境分三种：仅在客户端执行、仅在服务端执行、在客户端和服务端都执行。具体的置顶执行环境方式如下配置：</p>
+<p>1、通过命名格式指定执行环境：</p>
+<ul>
+<li><code>x.client.js</code> 仅在客户端执行</li>
+<li><code>x.server.js</code> 仅在服务端执行</li>
+<li><code>x.js</code> 在客户端和服务端双端执行</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nuxt.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugin: [</span><br><span class="line">    <span class="string">'~/plugins/plugin.client.js'</span></span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>2、通过 ssr 字段置顶执行环境：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nuxt.config.js</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  plugin: [</span><br><span class="line">    &#123;</span><br><span class="line">      src: <span class="string">'~/plugins/plugin.js'</span>,</span><br><span class="line">      <span class="comment">// ssr: true 注意，ssr 字段即将弃用，改为 mode 字段</span></span><br><span class="line">      mode: <span class="string">'server'</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>插件的具体使用方法：<a href="https://zh.nuxtjs.org/guide/plugins" target="_blank" rel="noopener">传送门</a></p>
+<h3 id="middleware"><a href="#middleware" class="headerlink" title="middleware"></a>middleware</h3><p>中间件放置在 <code>src/middleware/</code> 目录，接收 <code>context</code> 上下文作为第一个参数。中间件会在路由改变时调用：</p>
+<ul>
+<li>在 <code>nuxt.config.js</code> 中配置，会在每个路由改变时调用</li>
+<li>也可不做全局配置，改为 <code>layouts</code> 或者自定义开发组件内调用</li>
+</ul>
+<p>中间件的具体使用方法：<a href="https://zh.nuxtjs.org/guide/routing#%E4%B8%AD%E9%97%B4%E4%BB%B6" target="_blank" rel="noopener">传送门</a></p>
+<h3 id="store"><a href="#store" class="headerlink" title="store"></a>store</h3><p>Vuex 状态树在 Nuxt.js 内核做了实现，支持两种 <code>store</code> 方式：</p>
+<ul>
+<li>模块方式：<code>src/store/</code> 目录下的每个 <code>.js</code> 文件会被转换为状态树 <strong>指定命名的子模块</strong></li>
+<li>Classic方式：传统 Vuex 语法使用，不建议，根据构建 warning 提示，会在3.0版本移除（目前为2.9.x）</li>
+</ul>
+<p>参考地址：<a href="https://zh.nuxtjs.org/guide/vuex-store" target="_blank" rel="noopener">传送门</a></p>
+<h3 id="asyncData-方法"><a href="#asyncData-方法" class="headerlink" title="asyncData 方法"></a>asyncData 方法</h3><p><code>asyncData</code> 方法会在组件（限于页面组件）每次加载之前被调用。它可以在 <strong>服务端</strong> 或 <strong>路由更新</strong> 之前被调用，接收 context 上下文作为第一个参数。Nuxt.js 会将 <code>asyncData</code> 返回的数据融合组件 <code>data</code> 方法返回的数据一并返回给当前组件。</p>
+<blockquote>
+<p>该方法在 Vue 实例化之前调用，因此不能通过 <code>this</code> 获取 Vue 实例</p>
+</blockquote>
+<h3 id="fetch-方法"><a href="#fetch-方法" class="headerlink" title="fetch 方法"></a>fetch 方法</h3><p>fetch 方法会在渲染页面前被调用，作用是填充状态树 (store) 数据，接收 context 上下文作为第一个参数。与 asyncData 方法类似，不同的是它不会设置组件的数据。例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  fetch (&#123; store, params, $axios &#125;) &#123;</span><br><span class="line">    store.commit(<span class="string">'getUrl'</span>, <span class="string">'url'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="validate-方法"><a href="#validate-方法" class="headerlink" title="validate 方法"></a>validate 方法</h3><p><code>validate</code> 可以在动态路由对应的页面组件中配置一个校验方法用于校验动态路由参数的有效性。接收 context 上下文作为第一个参数。例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">validate(&#123; params, query &#125;) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="regexp">/^\d+$/</span>.test(params.id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="context-上下文对象"><a href="#context-上下文对象" class="headerlink" title="context 上下文对象"></a>context 上下文对象</h3><p>在上面的介绍中，我们一直提到上下文对象，它包含 Vue 根实例，Vue Router 路由，Vuex 状态树，error 错误方法，redirect 跳转方法等等内容，可以参考<a href="https://zh.nuxtjs.org/api/context/" target="_blank" rel="noopener">这里</a>。</p>
+<h3 id="Caching-Components-组件缓存"><a href="#Caching-Components-组件缓存" class="headerlink" title="Caching Components 组件缓存"></a>Caching Components 组件缓存</h3><p>Vue 由于创建组件实例和 Virtual DOM 节点的成本，它无法与纯粹基于字符串的模板（php）的性能相匹配。在 SSR 性能至关重要的情况下，合理地利用缓存策略可以大大缩短响应时间并减少服务器负载。</p>
+<p>安装依赖：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i @nuxtjs/component-cache -D</span><br></pre></td></tr></table></figure>
+<p>新增组件缓存配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nuxt.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  modules: [</span><br><span class="line">    [<span class="string">'@nuxtjs/component-cache'</span>, &#123;</span><br><span class="line">      max: <span class="number">10000</span>,</span><br><span class="line">      maxAge: <span class="number">1000</span> * <span class="number">60</span> * <span class="number">60</span></span><br><span class="line">    &#125;]</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可缓存组件必须定义唯一 <code>name</code> 选项</li>
+<li>不应该缓存组件的情况<ul>
+<li>可能拥有依赖 <code>global</code> 数据的子组件</li>
+<li>具有在渲染 <code>context</code> 中产生副作用的子组件</li>
+</ul>
+</li>
+</ul>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><h3 id="静态应用部署"><a href="#静态应用部署" class="headerlink" title="静态应用部署"></a>静态应用部署</h3><p>以下命令生成应用的静态目录和文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run generate</span><br></pre></td></tr></table></figure>
+<p>适合范围：spa 中小型应用，可控的动态路由页面。详细信息参考<a href="https://zh.nuxtjs.org/guide/commands" target="_blank" rel="noopener">这里</a></p>
+<h3 id="服务端渲染应用部署"><a href="#服务端渲染应用部署" class="headerlink" title="服务端渲染应用部署"></a>服务端渲染应用部署</h3><p>以下命令进行项目编译构建，然后启动服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nuxt build</span><br><span class="line">nuxt start</span><br></pre></td></tr></table></figure>
+<p>详细信息参考<a href="https://zh.nuxtjs.org/guide/commands" target="_blank" rel="noopener">这里</a></p>
+<blockquote>
+<p>部署方式在官方文档有详细描述，不做过多解释。</p>
+</blockquote>
+<h3 id="使用-pm2-进行服务进程管理"><a href="#使用-pm2-进行服务进程管理" class="headerlink" title="使用 pm2 进行服务进程管理"></a>使用 pm2 进行服务进程管理</h3><p>在我们实际开发环境中，直接 <code>nuxt start</code> 跑起来的项目可能并不能满足我们的需求，原因包含且不限于：无法后台运行，无法热重启等等。</p>
+<p>使用 pm2 的原因：</p>
+<ul>
+<li>可以内建负载均衡（使用 Node cluster 集群模块）</li>
+<li>后台运行</li>
+<li>0 秒停机重载，我理解大概意思是维护升级的时候不需要停机.</li>
+<li>停止/重启不稳定的进程（避免无限循环或内存溢出）</li>
+</ul>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>全局安装 pm2 ：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm i -g pm2</span><br></pre></td></tr></table></figure>
+<h4 id="pm2-管理配置"><a href="#pm2-管理配置" class="headerlink" title="pm2 管理配置"></a>pm2 管理配置</h4><p>新增 <code>process.json</code> :</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"apps"</span>: [&#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"nuxt"</span>,</span><br><span class="line">        <span class="attr">"script"</span>: <span class="string">"./server/index.js"</span>,</span><br><span class="line">        <span class="attr">"args"</span>: <span class="string">"--kill-timeout 10000"</span>,</span><br><span class="line">        <span class="attr">"watch"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"ignore_watch"</span>: [<span class="string">"node_modules"</span>, <span class="string">"build"</span>, <span class="string">"logs"</span>],</span><br><span class="line">        <span class="attr">"out_file"</span>: <span class="string">"logs/nuxt_out.log"</span>,</span><br><span class="line">        <span class="attr">"error_file"</span>: <span class="string">"logs/nuxt_error.log"</span>,</span><br><span class="line">        <span class="attr">"max_memory_restart"</span>: <span class="string">"1G"</span>,</span><br><span class="line">        <span class="attr">"env"</span>: &#123;</span><br><span class="line">            <span class="attr">"NODE_ENV"</span>: <span class="string">"production"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">"log_date_format"</span>: <span class="string">"YYYY-MM-DD HH:mm Z"</span>,</span><br><span class="line">        <span class="attr">"instance_var"</span>: <span class="string">"INSTANCE_ID"</span>,</span><br><span class="line">        <span class="attr">"exec_mode"</span>: <span class="string">"cluster"</span>,</span><br><span class="line">        <span class="attr">"instances"</span>: <span class="string">"0"</span>,</span><br><span class="line">        <span class="attr">"autorestart"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大概介绍几个比较重要的配置项：</p>
+<ul>
+<li>exec_mode：默认为 <code>fork</code> 模式，单服务进程，无法热重启。这里我们修改为 <code>cluster</code> 模式，内建负载均衡</li>
+<li>instances：进程数，可手动设置，0 或 ‘max’ 会根据服务器核数分配进程数</li>
+<li>autorestart：设置为 true , 在内存溢出或其他极端情况下重启服务</li>
+</ul>
+<h4 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h4><p>我们可以执行以下命令运行我们的 Nuxt.js 项目：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start process.json</span><br></pre></td></tr></table></figure>
+<p>然后执行 <code>pm2 list</code> 可以看到各个服务进程的详细信息。</p>
+<p>执行以下命令进行热重启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 reload nuxt # 使用process.json里的name配置进行服务管理</span><br></pre></td></tr></table></figure>
+<h4 id="startOrGracefulReload-实现符合-node-js-特性的热重启"><a href="#startOrGracefulReload-实现符合-node-js-特性的热重启" class="headerlink" title="startOrGracefulReload 实现符合 node.js 特性的热重启"></a>startOrGracefulReload 实现符合 node.js 特性的热重启</h4><p>如果按照之前 reload 的方法进行热重启，且用户刷新的够快够频繁，还是会在重启过程中看到两三秒的502页面，原因在于 node.js 服务的单线程 <strong>异步</strong> 非阻塞I/O模型。异步的特性导致集群中的某一个服务并没有完全启动，但是代码已经执行结束，导致 pm2 直接进行下一线程的服务重启工作，因此我们选择使用 <code>startOrGracefulReload</code> 作为热重启手段。</p>
+<p>首先对 <code>server/index.js</code> 做一些改造：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = app.listen(port, host);</span><br><span class="line">process.on(<span class="string">'SIGINT'</span>, () =&gt; &#123;</span><br><span class="line">  server.close();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，express()本身不是一个server实例，但是express().listen()会返回server实例，因此我们在调用close()方法的时候要注意调用对象是否正确</p>
+</blockquote>
+<p>执行以下命令以完成符合 node.js 特性的热重启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 startOrGracefulReload process.json</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/10/12/Nuxt-js-开发及部署/" data-id="ck1n687uv000itcu6jfbv7jpm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nuxt-js/">Nuxt.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/10/时隔几个月的一篇唠叨/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">时隔几个月的一篇唠叨</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端开发/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活随笔/">生活随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nuxt-js/">Nuxt.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Nuxt-js/" style="font-size: 10px;">Nuxt.js</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/10/12/Nuxt-js-开发及部署/">Nuxt.js 开发及部署</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/时隔几个月的一篇唠叨/">时隔几个月的一篇唠叨</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/22/webpack优化二：打包分析/">webpack优化二：打包分析</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/06/webpack优化一：构建测速/">webpack优化一：构建测速</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/30/sublime启用vim模式/">sublime启用vim模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 葛潇林 hina_ge#163.com<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/canvas-nest.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
