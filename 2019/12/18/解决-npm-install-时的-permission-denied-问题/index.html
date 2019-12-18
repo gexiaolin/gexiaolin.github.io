@@ -5,16 +5,20 @@
   
 
   
-  <title>Archives: 2019 | 葛潇林</title>
+  <title>解决 npm install 时的 permission denied 问题 | 葛潇林</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="葛潇林">
-<meta property="og:url" content="http://hinapudao.github.io/archives/2019/index.html">
+  <meta name="description" content="问题场景当我们在某个搭建好的项目中执行 npm install 时，有时会出现以下类似报错： 1234567npm ERR! code 1npm ERR! Command failed: /usr/local/bin/git clone --depth=1 -q -b fix/https-via-http-proxy git://github.com/contentful/axios.git /U">
+<meta name="keywords" content="npm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决 npm install 时的 permission denied 问题">
+<meta property="og:url" content="http://hinapudao.github.io/2019/12/18/解决-npm-install-时的-permission-denied-问题/index.html">
 <meta property="og:site_name" content="葛潇林">
+<meta property="og:description" content="问题场景当我们在某个搭建好的项目中执行 npm install 时，有时会出现以下类似报错： 1234567npm ERR! code 1npm ERR! Command failed: /usr/local/bin/git clone --depth=1 -q -b fix/https-via-http-proxy git://github.com/contentful/axios.git /U">
 <meta property="og:locale" content="中文">
+<meta property="og:updated_time" content="2019-12-18T10:42:00.134Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="葛潇林">
+<meta name="twitter:title" content="解决 npm install 时的 permission denied 问题">
+<meta name="twitter:description" content="问题场景当我们在某个搭建好的项目中执行 npm install 时，有时会出现以下类似报错： 1234567npm ERR! code 1npm ERR! Command failed: /usr/local/bin/git clone --depth=1 -q -b fix/https-via-http-proxy git://github.com/contentful/axios.git /U">
   
     <link rel="alternate" href="/atom.xml" title="葛潇林" type="application/atom+xml">
   
@@ -65,173 +69,65 @@
   </div>
 </header>
       <div class="outer" id="article">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/18/解决-npm-install-时的-permission-denied-问题/" class="archive-article-date">
-  <time datetime="2019-12-18T10:11:58.000Z" itemprop="datePublished">Dec 18</time>
+        <section id="main"><article id="post-解决-npm-install-时的-permission-denied-问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/18/解决-npm-install-时的-permission-denied-问题/" class="article-date">
+  <time datetime="2019-12-18T10:11:58.000Z" itemprop="datePublished">2019-12-18</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/18/解决-npm-install-时的-permission-denied-问题/">解决 npm install 时的 permission denied 问题</a>
+    <h1 class="article-title" itemprop="name">
+      解决 npm install 时的 permission denied 问题
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/10/12/Nuxt-js-开发及部署/" class="archive-article-date">
-  <time datetime="2019-10-12T06:20:04.000Z" itemprop="datePublished">Oct 12</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/12/Nuxt-js-开发及部署/">Nuxt.js 开发及部署</a>
-    </h1>
-  
+        <h2 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h2><p>当我们在某个搭建好的项目中执行 <code>npm install</code> 时，有时会出现以下类似报错：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! code 1</span><br><span class="line">npm ERR! Command failed: /usr/local/bin/git clone --depth=1 -q -b fix/https-via-http-proxy git://github.com/contentful/axios.git /Users/xxx/.npm/_cacache/tmp/git-clone-e4d5168e</span><br><span class="line">npm ERR! /Users/xxx/.npm/_cacache/tmp/git-clone-e4d5168e/.git: Permission denied</span><br><span class="line">npm ERR!</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     /Users/xxx/.npm/_logs/2017-11-30T21_24_50_080Z-debug.log</span><br></pre></td></tr></table></figure>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p><code>npm</code> 在执行 <code>install</code> 命令时，会尝试搜索本地缓存（位于 <code>~/.npm/cacache</code> ），如果缓存命中，请求返回304，然后从本地缓存仓库解压缓存依赖包。</p>
+<p>如果之前使用过 <code>sudo</code> 命令 <code>install</code> 过该依赖，则缓存的依赖压缩包的权限为 <code>root</code> ，当前用户权限不足，从而返回以上报错。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="提供当前用户权限"><a href="#提供当前用户权限" class="headerlink" title="提供当前用户权限"></a>提供当前用户权限</h3><p>该方案属于修改用户权限的hack方案，如果对权限较敏感，请谨慎操作</p>
+<p>执行以下命令，递归指定文件夹及内部文件权限到当前用户：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R $USER:$GROUP ~/.npm</span><br><span class="line">sudo chown -R $USER:$GROUP ~/.config</span><br></pre></td></tr></table></figure>
+<h3 id="尝试清除本地缓存"><a href="#尝试清除本地缓存" class="headerlink" title="尝试清除本地缓存"></a>尝试清除本地缓存</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm cache clean -f</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/09/10/时隔几个月的一篇唠叨/" class="archive-article-date">
-  <time datetime="2019-09-10T11:45:30.000Z" itemprop="datePublished">Sep 10</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/10/时隔几个月的一篇唠叨/">时隔几个月的一篇唠叨</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/22/webpack优化二：打包分析/" class="archive-article-date">
-  <time datetime="2019-05-21T20:03:33.000Z" itemprop="datePublished">May 22</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/12/18/解决-npm-install-时的-permission-denied-问题/" data-id="ck4b5y2o600061b70ugkda742" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/22/webpack优化二：打包分析/">webpack优化二：打包分析</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/06/webpack优化一：构建测速/" class="archive-article-date">
-  <time datetime="2019-05-06T13:50:37.000Z" itemprop="datePublished">May 6</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/06/webpack优化一：构建测速/">webpack优化一：构建测速</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/30/sublime启用vim模式/" class="archive-article-date">
-  <time datetime="2019-04-30T10:33:32.000Z" itemprop="datePublished">Apr 30</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/30/sublime启用vim模式/">sublime启用vim模式</a>
-    </h1>
   
+    <a href="/2019/10/12/Nuxt-js-开发及部署/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Nuxt.js 开发及部署</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/29/Webpack-Optimization/" class="archive-article-date">
-  <time datetime="2019-04-29T08:50:49.000Z" itemprop="datePublished">Apr 29</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/29/Webpack-Optimization/">Webpack Optimization</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/04/29/从零开始搭建多入口webpack4项目/" class="archive-article-date">
-  <time datetime="2019-04-29T07:23:56.000Z" itemprop="datePublished">Apr 29</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/29/从零开始搭建多入口webpack4项目/">从零开始搭建多入口webpack4项目</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
 
 </section>
         

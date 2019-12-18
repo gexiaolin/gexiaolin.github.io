@@ -67,6 +67,56 @@
       <div class="outer" id="article">
         <section id="main">
   
+    <article id="post-解决-npm-install-时的-permission-denied-问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/18/解决-npm-install-时的-permission-denied-问题/" class="article-date">
+  <time datetime="2019-12-18T10:11:58.000Z" itemprop="datePublished">2019-12-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端开发/">前端开发</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/18/解决-npm-install-时的-permission-denied-问题/">解决 npm install 时的 permission denied 问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题场景"><a href="#问题场景" class="headerlink" title="问题场景"></a>问题场景</h2><p>当我们在某个搭建好的项目中执行 <code>npm install</code> 时，有时会出现以下类似报错：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! code 1</span><br><span class="line">npm ERR! Command failed: /usr/local/bin/git clone --depth=1 -q -b fix/https-via-http-proxy git://github.com/contentful/axios.git /Users/xxx/.npm/_cacache/tmp/git-clone-e4d5168e</span><br><span class="line">npm ERR! /Users/xxx/.npm/_cacache/tmp/git-clone-e4d5168e/.git: Permission denied</span><br><span class="line">npm ERR!</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     /Users/xxx/.npm/_logs/2017-11-30T21_24_50_080Z-debug.log</span><br></pre></td></tr></table></figure>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p><code>npm</code> 在执行 <code>install</code> 命令时，会尝试搜索本地缓存（位于 <code>~/.npm/cacache</code> ），如果缓存命中，请求返回304，然后从本地缓存仓库解压缓存依赖包。</p>
+<p>如果之前使用过 <code>sudo</code> 命令 <code>install</code> 过该依赖，则缓存的依赖压缩包的权限为 <code>root</code> ，当前用户权限不足，从而返回以上报错。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="提供当前用户权限"><a href="#提供当前用户权限" class="headerlink" title="提供当前用户权限"></a>提供当前用户权限</h3><p>该方案属于修改用户权限的hack方案，如果对权限较敏感，请谨慎操作</p>
+<p>执行以下命令，递归指定文件夹及内部文件权限到当前用户：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R $USER:$GROUP ~/.npm</span><br><span class="line">sudo chown -R $USER:$GROUP ~/.config</span><br></pre></td></tr></table></figure>
+<h3 id="尝试清除本地缓存"><a href="#尝试清除本地缓存" class="headerlink" title="尝试清除本地缓存"></a>尝试清除本地缓存</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm cache clean -f</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://hinapudao.github.io/2019/12/18/解决-npm-install-时的-permission-denied-问题/" data-id="ck4b5y2o600061b70ugkda742" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Nuxt-js-开发及部署" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/10/12/Nuxt-js-开发及部署/" class="article-date">
@@ -207,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hinapudao.github.io/2019/10/12/Nuxt-js-开发及部署/" data-id="ck1n687uv000itcu6jfbv7jpm" class="article-share-link">Share</a>
+      <a data-url="http://hinapudao.github.io/2019/10/12/Nuxt-js-开发及部署/" data-id="ck4b5y2ot000m1b70923i797r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nuxt-js/">Nuxt.js</a></li></ul>
@@ -263,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hinapudao.github.io/2019/09/10/时隔几个月的一篇唠叨/" data-id="ck1n687uh0005tcu6v2bc6xbu" class="article-share-link">Share</a>
+      <a data-url="http://hinapudao.github.io/2019/09/10/时隔几个月的一篇唠叨/" data-id="ck4b5y2o100041b70pcenojuc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -313,7 +363,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hinapudao.github.io/2019/05/22/webpack优化二：打包分析/" data-id="ck1n687uf0004tcu6crv3n0q7" class="article-share-link">Share</a>
+      <a data-url="http://hinapudao.github.io/2019/05/22/webpack优化二：打包分析/" data-id="ck4b5y2o400051b70fr2grp4w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
@@ -379,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hinapudao.github.io/2019/05/06/webpack优化一：构建测速/" data-id="ck1n687u90001tcu6npo5wql7" class="article-share-link">Share</a>
+      <a data-url="http://hinapudao.github.io/2019/05/06/webpack优化一：构建测速/" data-id="ck4b5y2nu00011b70iltt8u6v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
@@ -433,7 +483,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hinapudao.github.io/2019/04/30/sublime启用vim模式/" data-id="ck1n687u10000tcu6o26qwxyu" class="article-share-link">Share</a>
+      <a data-url="http://hinapudao.github.io/2019/04/30/sublime启用vim模式/" data-id="ck4b5y2nl00001b70y1qzla7t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime/">sublime</a></li></ul>
@@ -610,7 +660,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hinapudao.github.io/2019/04/29/Webpack-Optimization/" data-id="ck1n687uw000jtcu6sdqvsgjr" class="article-share-link">Share</a>
+      <a data-url="http://hinapudao.github.io/2019/04/29/Webpack-Optimization/" data-id="ck4b5y2op000l1b709tzktbwx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
@@ -749,7 +799,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://hinapudao.github.io/2019/04/29/从零开始搭建多入口webpack4项目/" data-id="ck1n687uy000ltcu6y9qhoq1l" class="article-share-link">Share</a>
+      <a data-url="http://hinapudao.github.io/2019/04/29/从零开始搭建多入口webpack4项目/" data-id="ck4b5y2ow000o1b70kwwvb8a4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
@@ -781,7 +831,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nuxt-js/">Nuxt.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nuxt-js/">Nuxt.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sublime/">sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
     </div>
   </div>
 
@@ -791,7 +841,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Nuxt-js/" style="font-size: 10px;">Nuxt.js</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+      <a href="/tags/Nuxt-js/" style="font-size: 10px;">Nuxt.js</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
     </div>
   </div>
 
@@ -800,7 +850,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
     </div>
   </div>
 
@@ -811,6 +861,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/12/18/解决-npm-install-时的-permission-denied-问题/">解决 npm install 时的 permission denied 问题</a>
+          </li>
         
           <li>
             <a href="/2019/10/12/Nuxt-js-开发及部署/">Nuxt.js 开发及部署</a>
@@ -826,10 +880,6 @@
         
           <li>
             <a href="/2019/05/06/webpack优化一：构建测速/">webpack优化一：构建测速</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/30/sublime启用vim模式/">sublime启用vim模式</a>
           </li>
         
       </ul>
